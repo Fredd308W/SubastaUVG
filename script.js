@@ -1,11 +1,7 @@
-// --------------------------------------------------
-// script.js (con Firebase v8 - compatible)
-// --------------------------------------------------
-
 // Contraseña de administrador
 const ADMIN_PASSWORD = 'admin123';
 
-// 🔥 CONFIGURACIÓN FIREBASE v8
+// CONFIGURACIÓN FIREBASE v8
 const firebaseConfig = {
   apiKey: "AIzaSyBSRR4ADmpfxEuZT8DvdDdf9Q3GTvHbWFo",
   authDomain: "subasta-5bdbb.firebaseapp.com",
@@ -22,7 +18,7 @@ if (!firebase.apps.length) {
 }
 const db = firebase.firestore();
 
-// 🔥 FUNCIÓN PARA CARGAR PRODUCTOS CON ESTADO REAL
+// FUNCIÓN PARA CARGAR PRODUCTOS CON ESTADO REAL
 async function cargarProductosConEstado() {
   const grid = document.getElementById('productsGrid');
   grid.innerHTML = ''; // Limpiar grid
@@ -68,32 +64,193 @@ async function cargarProductosConEstado() {
     }
   }
 }
-// Simulación de productos
+// Productos
 const productos = [
   {
-    id: 'p1',
-    nombre: 'Laptop Dell i7',
+    id: 'C1',
+    nombre: 'Combo 1',
     descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
-    precio: 3500,
+    precio: 1500,
     specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
     img: 'imagenes/C1.JPEG',
   },
   {
-    id: 'p2',
-    nombre: 'Proyector Epson',
-    descripcion: 'Alta definición, perfecto para presentaciones.',
-    precio: 1800,
+    id: 'C2',
+    nombre: 'Combo 2',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB.',
+    precio: 1500,
     specs: ['Full HD', 'HDMI', '4000 lúmenes'],
-    img: 'https://via.placeholder.com/300x200',
+    img: 'imagenes/C2.JPEG',
   },
   {
-    id: 'p3',
-    nombre: 'Monitor HP 24”',
-    descripcion: 'Pantalla Full HD con excelente color.',
-    precio: 1200,
+    id: 'C3',
+    nombre: 'Combo 3',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB.',
+    precio: 1500,
     specs: ['24 pulgadas', 'HDMI', '75Hz'],
-    img: 'https://via.placeholder.com/300x200',
-  }
+    img: 'imagenes/C3.JPEG',
+  },
+  {
+    id: 'C4',
+    nombre: 'Combo 4',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C4.JPEG',
+  },
+  {
+    id: 'C5',
+    nombre: 'Combo 5',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C6.JPEG',
+  },
+  {
+    id: 'C6',
+    nombre: 'Combo 6',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C6.JPEG',
+  },
+  {
+    id: 'C7',
+    nombre: 'Combo 7',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C7.JPEG',
+  },
+  {
+    id: 'C8',
+    nombre: 'Combo 8',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C8.JPEG',
+  },
+  {
+    id: 'C9',
+    nombre: 'Combo 9',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C9.JPEG',
+  },
+
+  {
+    id: 'C10',
+    nombre: 'Combo 10',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C10.JPEG',
+  },
+  {
+    id: 'C11',
+    nombre: 'Combo 11',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C11.JPEG',
+  },
+  {
+    id: 'C12',
+    nombre: 'Combo 12',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C12.JPEG',
+  },
+  {
+    id: 'C13',
+    nombre: 'Combo 13',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C13.JPEG',
+  },
+  {
+    id: 'C14',
+    nombre: 'Combo 14',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C14.JPEG',
+  },
+  {
+    id: 'C15',
+    nombre: 'Combo 15',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C15.JPEG',
+  },
+  {
+    id: 'C16',
+    nombre: 'Combo 16',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C16.JPEG',
+  },
+  {
+    id: 'C17',
+    nombre: 'Combo 17',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C17.JPEG',
+  },
+  {
+    id: 'C18',
+    nombre: 'Combo 18',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C18.JPEG',
+  },
+  {
+    id: 'C19',
+    nombre: 'Combo 19',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C19.JPEG',
+  },
+  {
+    id: 'C20',
+    nombre: 'Combo 20',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C20.JPEG',
+  },
+  {
+    id: 'C21',
+    nombre: 'Combo 21',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C21.JPEG',
+  },
+  {
+    id: 'C22',
+    nombre: 'Combo 22',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C22.JPEG',
+  },
+  {
+    id: 'C23',
+    nombre: 'Combo 23',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C23.JPEG',
+  },
 ];
 
 // Cargar productos con estado real desde Firebase
@@ -309,44 +466,311 @@ function guardarReservaLocal(datos) {
 }
 
 // --------------------------------------------------------------------
-// BOTÓN ADMIN PARA RESTABLECER
+// PANEL DE ADMINISTRADOR
 // --------------------------------------------------------------------
-const adminBtn = document.getElementById('adminReset');
-adminBtn.addEventListener('click', async () => {
-  const pwd = prompt('Ingrese contraseña de administrador para restablecer estados:');
+const adminBtn = document.getElementById('adminPanel');
+let modoAdminActivo = false;
+
+adminBtn.addEventListener('click', () => {
+  const pwd = prompt('Ingrese contraseña de administrador:');
   if (pwd === ADMIN_PASSWORD) {
-    const opcion = prompt('¿Qué deseas hacer?\n1. Solo restablecer local\n2. Limpiar Firebase también');
+    modoAdminActivo = !modoAdminActivo;
     
-    // Limpiar localStorage siempre
-    productos.forEach(p => {
-      localStorage.removeItem(p.id);
-      localStorage.removeItem(p.id + '_code');
-      localStorage.removeItem(p.id + '_datos');
-    });
-    
-    if (opcion === '2') {
-      try {
-        // 🔥 LIMPIAR RESERVAS EN FIREBASE
-        const snapshot = await db.collection("reservas").get();
-        const batch = db.batch();
-        snapshot.docs.forEach(doc => {
-          batch.delete(doc.ref);
-        });
-        await batch.commit();
-        alert('✅ Estados restablecidos y Firebase limpiado.');
-      } catch (error) {
-        console.error('Error limpiando Firebase:', error);
-        alert('✅ Estados locales restablecidos. Error limpiando Firebase.');
-      }
+    if (modoAdminActivo) {
+      // Entrar en modo administrador
+      adminBtn.textContent = 'Salir del Modo Admin';
+      adminBtn.classList.remove('ghost');
+      adminBtn.classList.add('btn');
+      mostrarPanelAdministrador();
     } else {
-      alert('✅ Estados locales restablecidos.');
+      // Salir del modo administrador
+      adminBtn.textContent = 'Modo Administrador';
+      adminBtn.classList.remove('btn');
+      adminBtn.classList.add('ghost');
+      ocultarPanelAdministrador();
     }
-    
-    location.reload();
   } else {
     alert('Contraseña incorrecta.');
   }
 });
+
+// 🔥 FUNCIÓN PARA MOSTRAR EL PANEL DE ADMINISTRADOR
+async function mostrarPanelAdministrador() {
+  // Crear overlay del panel admin
+  const panelAdmin = document.createElement('div');
+  panelAdmin.id = 'panelAdmin';
+  panelAdmin.innerHTML = `
+    <div class="panel-admin-overlay">
+      <div class="panel-admin-content">
+        <div class="panel-header">
+          <h2>📊 Panel de Administración - Subastas UVG</h2>
+          <button class="close-panel" onclick="cerrarPanelAdmin()">✕</button>
+        </div>
+        
+        <div class="panel-tabs">
+          <button class="tab-btn active" data-tab="reservas">📋 Reservas Activas</button>
+          <button class="tab-btn" data-tab="productos">🔄 Gestionar Productos</button>
+          <button class="tab-btn" data-tab="limpiar">🗑️ Limpiar Sistema</button>
+        </div>
+        
+        <div class="tab-content">
+          <div id="tab-reservas" class="tab-pane active">
+            <h3>Reservas Activas</h3>
+            <div id="lista-reservas" class="reservas-list">
+              <div class="loading">Cargando reservas...</div>
+            </div>
+          </div>
+          
+          <div id="tab-productos" class="tab-pane">
+            <h3>Gestionar Estado de Productos</h3>
+            <div id="lista-productos" class="productos-list">
+              <div class="loading">Cargando productos...</div>
+            </div>
+          </div>
+          
+          <div id="tab-limpiar" class="tab-pane">
+            <h3>Limpiar Sistema</h3>
+            <div class="clean-actions">
+              <button class="btn danger" id="limpiarTodo">
+                🗑️ Limpiar TODAS las reservas (Firebase)
+              </button>
+              <p class="warning">⚠️ Esta acción no se puede deshacer. Eliminará todas las reservas de la base de datos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(panelAdmin);
+  
+  // Cargar datos iniciales
+  await cargarReservasActivas();
+  await cargarListaProductos();
+  
+  // Configurar tabs
+  configurarTabs();
+  
+  // Configurar botón de limpiar
+  document.getElementById('limpiarTodo').addEventListener('click', limpiarTodasLasReservas);
+}
+
+// 🔥 FUNCIÓN PARA CERRAR EL PANEL
+function cerrarPanelAdmin() {
+  const panel = document.getElementById('panelAdmin');
+  if (panel) {
+    panel.remove();
+  }
+  modoAdminActivo = false;
+  adminBtn.textContent = 'Modo Administrador';
+  adminBtn.classList.remove('btn');
+  adminBtn.classList.add('ghost');
+}
+
+function ocultarPanelAdministrador() {
+  cerrarPanelAdmin();
+}
+
+// 🔥 CARGAR RESERVAS ACTIVAS
+async function cargarReservasActivas() {
+  try {
+    const listaReservas = document.getElementById('lista-reservas');
+    listaReservas.innerHTML = '<div class="loading">Cargando reservas...</div>';
+    
+    const snapshot = await db.collection("reservas")
+      .orderBy("fecha", "desc")
+      .get();
+    
+    if (snapshot.empty) {
+      listaReservas.innerHTML = '<div class="no-data">No hay reservas activas</div>';
+      return;
+    }
+    
+    let html = '';
+    snapshot.forEach(doc => {
+      const reserva = doc.data();
+      const fecha = reserva.fecha ? reserva.fecha.toDate().toLocaleString('es-GT') : 'Fecha no disponible';
+      
+      html += `
+        <div class="reserva-item">
+          <div class="reserva-info">
+            <strong>${reserva.producto}</strong>
+            <div class="reserva-details">
+              👤 ${reserva.nombre} | 📞 ${reserva.telefono} 
+              | 🔐 ${reserva.codigo} | ⏰ ${fecha}
+            </div>
+          </div>
+          <button class="btn small danger" onclick="eliminarReserva('${doc.id}', '${reserva.idProducto}')">
+            Eliminar
+          </button>
+        </div>
+      `;
+    });
+    
+    listaReservas.innerHTML = html;
+  } catch (error) {
+    console.error('Error cargando reservas:', error);
+    document.getElementById('lista-reservas').innerHTML = '<div class="error">Error cargando reservas</div>';
+  }
+}
+
+// 🔥 CARGAR LISTA DE PRODUCTOS PARA GESTIÓN
+async function cargarListaProductos() {
+  try {
+    const listaProductos = document.getElementById('lista-productos');
+    listaProductos.innerHTML = '<div class="loading">Cargando productos...</div>';
+    
+    let html = '';
+    for (const producto of productos) {
+      const disponible = await verificarDisponibilidad(producto.id);
+      const estado = disponible ? 'Disponible' : 'Reservado';
+      const claseEstado = disponible ? 'available' : 'solicited';
+      
+      html += `
+        <div class="producto-admin-item">
+          <div class="producto-info">
+            <strong>${producto.nombre}</strong>
+            <div class="producto-details">
+              💰 Q${producto.precio} | 📍 ${producto.id} 
+              | 🏷️ <span class="status ${claseEstado}">${estado}</span>
+            </div>
+          </div>
+          <div class="producto-actions">
+            ${!disponible ? `
+              <button class="btn small success" onclick="liberarProducto('${producto.id}')">
+                Marcar como Disponible
+              </button>
+            ` : `
+              <button class="btn small warning" onclick="reservarProductoAdmin('${producto.id}')">
+                Marcar como Reservado
+              </button>
+            `}
+          </div>
+        </div>
+      `;
+    }
+    
+    listaProductos.innerHTML = html;
+  } catch (error) {
+    console.error('Error cargando productos:', error);
+    document.getElementById('lista-productos').innerHTML = '<div class="error">Error cargando productos</div>';
+  }
+}
+
+// 🔥 FUNCIONES DE GESTIÓN INDIVIDUAL
+async function eliminarReserva(idReserva, idProducto) {
+  if (confirm('¿Estás seguro de que quieres eliminar esta reserva?')) {
+    try {
+      await db.collection("reservas").doc(idReserva).delete();
+      alert('✅ Reserva eliminada correctamente');
+      await cargarReservasActivas();
+      await cargarListaProductos();
+    } catch (error) {
+      console.error('Error eliminando reserva:', error);
+      alert('❌ Error eliminando reserva');
+    }
+  }
+}
+
+async function liberarProducto(idProducto) {
+  try {
+    // Eliminar todas las reservas de este producto
+    const snapshot = await db.collection("reservas")
+      .where("idProducto", "==", idProducto)
+      .get();
+    
+    const batch = db.batch();
+    snapshot.forEach(doc => {
+      batch.delete(doc.ref);
+    });
+    await batch.commit();
+    
+    // Limpiar localStorage también
+    localStorage.removeItem(idProducto);
+    localStorage.removeItem(idProducto + '_code');
+    localStorage.removeItem(idProducto + '_datos');
+    
+    alert('✅ Producto liberado correctamente');
+    await cargarReservasActivas();
+    await cargarListaProductos();
+    cargarProductosConEstado(); // Actualizar vista principal
+  } catch (error) {
+    console.error('Error liberando producto:', error);
+    alert('❌ Error liberando producto');
+  }
+}
+
+async function reservarProductoAdmin(idProducto) {
+  const producto = productos.find(p => p.id === idProducto);
+  if (confirm(`¿Marcar "${producto.nombre}" como reservado?`)) {
+    try {
+      await db.collection("reservas").add({
+        producto: producto.nombre,
+        nombre: "Reservado por Admin",
+        telefono: "N/A",
+        codigo: "ADMIN-" + Date.now(),
+        fecha: firebase.firestore.FieldValue.serverTimestamp(),
+        precio: producto.precio,
+        idProducto: idProducto,
+        estado: "reservado"
+      });
+      
+      alert('✅ Producto marcado como reservado');
+      await cargarListaProductos();
+      cargarProductosConEstado(); // Actualizar vista principal
+    } catch (error) {
+      console.error('Error reservando producto:', error);
+      alert('❌ Error reservando producto');
+    }
+  }
+}
+
+// 🔥 LIMPIAR TODAS LAS RESERVAS
+async function limpiarTodasLasReservas() {
+  if (confirm('⚠️ ¿ESTÁS SEGURO?\n\nEsta acción eliminará TODAS las reservas de la base de datos y no se puede deshacer.')) {
+    try {
+      const snapshot = await db.collection("reservas").get();
+      const batch = db.batch();
+      snapshot.docs.forEach(doc => {
+        batch.delete(doc.ref);
+      });
+      await batch.commit();
+      
+      // Limpiar localStorage también
+      productos.forEach(p => {
+        localStorage.removeItem(p.id);
+        localStorage.removeItem(p.id + '_code');
+        localStorage.removeItem(p.id + '_datos');
+      });
+      
+      alert('✅ Todas las reservas han sido eliminadas');
+      await cargarReservasActivas();
+      await cargarListaProductos();
+      cargarProductosConEstado(); // Actualizar vista principal
+    } catch (error) {
+      console.error('Error limpiando reservas:', error);
+      alert('❌ Error limpiando reservas');
+    }
+  }
+}
+
+// 🔥 CONFIGURAR TABS DEL PANEL
+function configurarTabs() {
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabPanes = document.querySelectorAll('.tab-pane');
+  
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Remover active de todos
+      tabBtns.forEach(b => b.classList.remove('active'));
+      tabPanes.forEach(p => p.classList.remove('active'));
+      
+      // Agregar active al seleccionado
+      btn.classList.add('active');
+      const tabId = btn.getAttribute('data-tab');
+      document.getElementById(`tab-${tabId}`).classList.add('active');
+    });
+  });
+}
 
 // --------------------------------------------------------------------
 // Accesibilidad: cerrar modales con ESC
