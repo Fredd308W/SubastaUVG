@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Subastas UVG — Catálogo de Equipos</title>
+  <meta name="description" content="Subastas UVG - Catálogo de equipos de cómputo. Cada artículo es único. Para solicitar, complete el formulario.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="site-header">
+      <div class="brand">
+        <div class="logo">UVG</div>
+        <div>
+          <h1>Subastas UVG</h1>
+          <p class="lead">Catálogo de equipos de cómputo — cada artículo es único. Solicita mediante el formulario.</p>
+        </div>
+      </div>
+      <div class="cta">
+        <a class="btn" href="#catalog" onclick="document.querySelector('#catalog').scrollIntoView({behavior:'smooth'})">Ver catálogo</a>
+        <a class="btn ghost" href="#contact" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Contacto</a>
+      </div>
+    </header>
+
+    <section class="banner" aria-labelledby="banner-title">
+      <div class="left">
+        <h2 id="banner-title">Catálogo de Equipos de Cómputo — Subastas UVG</h2>
+        <p>Encuentra equipos listos para usar, revisados y en excelente estado. Cada artículo es único — ¡aprovecha antes de que se agote!</p>
+      </div>
+      <div class="right">
+        <button class="btn" id="viewAll">Solicitar información</button>
+      </div>
+    </section>
+
+    <main id="catalog">
+      <div class="grid" id="productsGrid" aria-live="polite"></div>
+    </main>
+
+    <footer class="site-footer" id="contact">
+      <div>
+        <strong>Subastas UVG</strong>
+        <div class="small">Correo: ventas@subastasuvg.gt · Tel: +502 5555 0000</div>
+        <div class="small">Síguenos: @SubastasUVG</div>
+      </div>
+      <div class="contact-list">
+        <div class="small admin-reset">Nota: los estados se guardan localmente en el navegador.</div>
+        <div>
+          <button class="btn ghost" id="adminReset">Restablecer estados (admin)</button>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modal detalle -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-card" role="document">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div>
+          <h3 id="modal-title">Producto</h3>
+          <div class="small" id="modal-sub">Descripción corta</div>
+        </div>
+        <div>
+          <button class="close" id="modalClose" title="Cerrar">✕</button>
+        </div>
+      </div>
+      <div class="modal-grid">
+        <div><div id="modalImg" class="img" style="background:#223344"></div></div>
+        <div>
+          <p id="modal-desc" class="small" style="margin-top:0"></p>
+          <ul id="modal-specs" style="padding-left:18px;color:var(--muted);margin-top:8px"></ul>
+          <div style="display:flex;gap:8px;align-items:center;margin-top:12px">
+            <div class="price" id="modal-price">$0.00</div>
+            <div id="modal-status" class="status available">Disponible</div>
+          </div>
+
+          <div style="margin-top:18px;display:flex;gap:10px">
+            <button class="btn" id="modalRequest">Solicitar este equipo</button>
+            <button class="btn ghost" id="modalClose2">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
