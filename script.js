@@ -39,7 +39,187 @@ const productos = [
     img: 'imagenes/C2.JPEG',
     categoria: 'combos'
   },
-  // ... (todos los combos existentes)
+  {
+    id: 'C3',
+    nombre: 'Combo 3',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB.',
+    precio: 1500,
+    specs: ['Full HD', 'HDMI', '4000 lúmenes'],
+    img: 'imagenes/C3.JPEG',
+    categoria: 'combos'
+  },
+  {
+    id: 'C4',
+    nombre: 'Combo 4',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C4.JPEG',
+    categoria: 'combos'
+  },
+  {
+    id: 'C5',
+    nombre: 'Combo 5',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C6.JPEG',
+    categoria: 'combos'
+  },
+  {
+    id: 'C6',
+    nombre: 'Combo 6',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C6.JPEG',
+    categoria: 'combos'
+  },
+  {
+    id: 'C7',
+    nombre: 'Combo 7',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C7.JPEG',
+    categoria: 'combos'
+  },
+  {
+    id: 'C8',
+    nombre: 'Combo 8',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C8.JPEG',
+    categoria: 'combos'
+  },
+  {
+    id: 'C9',
+    nombre: 'Combo 9',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C9.JPEG',
+    categoria: 'combos'
+  },
+
+  {
+    id: 'C10',
+    nombre: 'Combo 10',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C10.JPEG',
+    categoria: 'combos'
+  },
+  {
+    id: 'C11',
+    nombre: 'Combo 11',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C11.JPEG',
+    categoria: 'combos'
+  },
+  {
+    id: 'C12',
+    nombre: 'Combo 12',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C12.JPEG',
+    categoria: 'combos'
+  },
+  {
+    id: 'C13',
+    nombre: 'Combo 13',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C13.JPEG',
+    categoria: 'combos'
+  },
+  {
+    id: 'C14',
+    nombre: 'Combo 14',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C14.JPEG',
+    categoria: 'combos'
+  },
+  {
+    id: 'C15',
+    nombre: 'Combo 15',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C15.JPEG',
+    categoria: 'combos'
+  },
+  {
+    id: 'C16',
+    nombre: 'Combo 16',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C16.JPEG',
+    categoria: 'combos'
+  },
+  {
+    id: 'C17',
+    nombre: 'Combo 17',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C17.JPEG',
+    categoria: 'combos'
+  },
+  {
+    id: 'C18',
+    nombre: 'Combo 18',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C18.JPEG',
+    categoria: 'combos'
+  },
+  {
+    id: 'C19',
+    nombre: 'Combo 19',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C19.JPEG',
+    categoria: 'combos'
+  },
+  {
+    id: 'C20',
+    nombre: 'Combo 20',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C20.JPEG',
+    categoria: 'combos'
+  },
+  {
+    id: 'C21',
+    nombre: 'Combo 21',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C21.JPEG',
+    categoria: 'combos'
+  },
+  {
+    id: 'C22',
+    nombre: 'Combo 22',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C22.JPEG',
+    categoria: 'combos'
+  },
   {
     id: 'C23',
     nombre: 'Combo 23',
