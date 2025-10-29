@@ -18,12 +18,207 @@ if (!firebase.apps.length) {
 }
 const db = firebase.firestore();
 
-// FUNCIÓN PARA CARGAR PRODUCTOS CON ESTADO REAL
+// Productos CON CATEGORÍAS - AGREGADOS LAPTOPS Y UPS
+const productos = [
+  // COMBOS (manteniendo los existentes)
+  {
+    id: 'C1',
+    nombre: 'Combo 1',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C1.JPEG',
+    categoria: 'combos'
+  },
+  {
+    id: 'C2',
+    nombre: 'Combo 2',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB.',
+    precio: 1500,
+    specs: ['Full HD', 'HDMI', '4000 lúmenes'],
+    img: 'imagenes/C2.JPEG',
+    categoria: 'combos'
+  },
+  // ... (todos los combos existentes)
+  {
+    id: 'C23',
+    nombre: 'Combo 23',
+    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    precio: 1500,
+    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    img: 'imagenes/C23.JPEG',
+    categoria: 'combos'
+  },
+
+  // LAPTOPS NUEVAS
+  {
+    id: 'L1',
+    nombre: 'Laptop ',
+    descripcion: 'Excelente estado, 8GB RAM, SSD 256GB',
+    precio: 1200,
+    specs: ['Pantalla 14"', 'Windows 11 Pro', 'SSD 256GB', 'Intel i5'],
+    img: 'imagenes/L1.PNG',
+    categoria: 'laptops'
+  },
+  {
+    id: 'L2',
+    nombre: 'Laptop Dell Latitude',
+    descripcion: 'Buen estado, 16GB RAM, HDD 1TB',
+    precio: 1100,
+    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'HDD 1TB', 'Intel i7'],
+    img: 'imagenes/C28.JPEG',
+    categoria: 'laptops'
+  },
+  {
+    id: 'L3',
+    nombre: 'Laptop Lenovo ThinkPad',
+    descripcion: 'Como nueva, 12GB RAM, SSD 512GB',
+    precio: 1400,
+    specs: ['Pantalla 13.3"', 'Windows 11 Pro', 'SSD 512GB', 'Intel i5'],
+    img: 'imagenes/C28.JPEG',
+    categoria: 'laptops'
+  },
+  {
+    id: 'L4',
+    nombre: 'Laptop Apple MacBook Air',
+    descripcion: 'Excelente estado, 8GB RAM, SSD 256GB',
+    precio: 1800,
+    specs: ['Pantalla 13"', 'macOS', 'SSD 256GB', 'Chip M1'],
+    img: 'imagenes/C28.JPEG',
+    categoria: 'laptops'
+  },
+
+  // UPS NUEVOS
+  {
+    id: 'U1',
+    nombre: 'UPS APC Back-UPS',
+    descripcion: 'Nuevo, 1500VA, Regulación AVR',
+    precio: 800,
+    specs: ['1500VA/900W', '8 Salidas', 'AVR', 'Batería reemplazable'],
+    img: 'imagenes/C28.JPEG',
+    categoria: 'ups'
+  },
+  {
+    id: 'U2',
+    nombre: 'UPS CyberPower CP1500',
+    descripcion: 'Excelente estado, 1500VA, LCD',
+    precio: 750,
+    specs: ['1500VA/900W', '12 Salidas', 'Pantalla LCD', 'Protection'],
+    img: 'imagenes/C28.JPEG',
+    categoria: 'ups'
+  },
+  {
+    id: 'U3',
+    nombre: 'UPS Tripp Lite SMART',
+    descripcion: 'Como nuevo, 1000VA, Software',
+    precio: 600,
+    specs: ['1000VA/600W', '6 Salidas', 'Software', 'USB'],
+    img: 'imagenes/C28.JPEG',
+    categoria: 'ups'
+  }
+];
+
+// 🔥 VARIABLES GLOBALES PARA FILTROS
+let categoriaActual = localStorage.getItem('categoriaActual') || 'all';
+let productosFiltrados = [];
+let modoAdminActivo = false;
+
+// 🔥 FUNCIONES AUXILIARES PARA CATEGORÍAS (simplificadas)
+function obtenerIconoCategoria(categoria) {
+  const icons = {
+    'combos': '🎮',
+    'laptops': '💻',
+    'ups': '🔋',
+    'all': '📦'
+  };
+  return icons[categoria] || '📦';
+}
+
+function obtenerNombreCategoria(categoria) {
+  const nombres = {
+    'combos': 'Combo',
+    'laptops': 'Laptop',
+    'ups': 'UPS'
+  };
+  return nombres[categoria] || 'Producto';
+}
+
+// 🔥 FUNCIÓN PARA CONTAR PRODUCTOS POR CATEGORÍA
+function contarProductosPorCategoria() {
+  const counts = {
+    all: productos.length,
+    combos: 0,
+    laptops: 0,
+    ups: 0
+  };
+
+  productos.forEach(producto => {
+    if (producto.categoria === 'combos') counts.combos++;
+    if (producto.categoria === 'laptops') counts.laptops++;
+    if (producto.categoria === 'ups') counts.ups++;
+  });
+
+  // Actualizar badges
+  if (document.getElementById('count-combos')) {
+    document.getElementById('count-combos').textContent = counts.combos;
+    document.getElementById('count-laptops').textContent = counts.laptops;
+    document.getElementById('count-ups').textContent = counts.ups;
+  }
+}
+
+// 🔥 FUNCIÓN PARA FILTRAR PRODUCTOS - MODIFICADA
+function filtrarProductos(categoria) {
+  categoriaActual = categoria;
+  // Guardar la categoría actual en localStorage
+  localStorage.setItem('categoriaActual', categoria);
+  
+  if (categoria === 'all') {
+    productosFiltrados = productos;
+  } else {
+    productosFiltrados = productos.filter(producto => producto.categoria === categoria);
+  }
+  
+  // Actualizar contador
+  if (document.getElementById('productCount')) {
+    document.getElementById('productCount').textContent = productosFiltrados.length;
+  }
+  
+  // Actualizar botones activos
+  document.querySelectorAll('.category-btn').forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.getAttribute('data-category') === categoria) {
+      btn.classList.add('active');
+    }
+  });
+  
+  // Recargar productos
+  cargarProductosConEstado();
+}
+
+// 🔥 FUNCIÓN PARA CARGAR PRODUCTOS CON ESTADO REAL Y FILTRO - MEJORADA
 async function cargarProductosConEstado() {
   const grid = document.getElementById('productsGrid');
-  grid.innerHTML = ''; // Limpiar grid
+  if (!grid) return;
   
-  for (const p of productos) {
+  grid.innerHTML = '';
+  
+  const productosAMostrar = categoriaActual === 'all' ? productos : productosFiltrados;
+  
+  if (productosAMostrar.length === 0) {
+    grid.innerHTML = `
+      <div class="no-products">
+        <div class="no-products-icon">🔍</div>
+        <h3>No se encontraron productos</h3>
+        <p>No hay equipos disponibles en esta categoría.</p>
+      </div>
+    `;
+    return;
+  }
+  
+  // Limpiar el grid completamente antes de agregar nuevos elementos
+  grid.innerHTML = '';
+  
+  for (const p of productosAMostrar) {
     try {
       // Verificar en Firebase si está reservado
       const reservadoEnFirebase = await verificarDisponibilidad(p.id);
@@ -36,7 +231,9 @@ async function cargarProductosConEstado() {
       card.className = 'card';
       card.innerHTML = `
         <div class="img" style="background:url('${p.img}') center/cover; height:160px; border-radius:8px;"></div>
-        <h3>${p.nombre}</h3>
+        <div class="card-header">
+          <h3>${p.nombre}</h3>
+        </div>
         <p>${p.descripcion}</p>
         <div class="price">Q${p.precio.toFixed(2)}</div>
         <div class="status ${reservado ? 'solicited' : 'available'}">
@@ -54,7 +251,9 @@ async function cargarProductosConEstado() {
       card.className = 'card';
       card.innerHTML = `
         <div class="img" style="background:url('${p.img}') center/cover; height:160px; border-radius:8px;"></div>
-        <h3>${p.nombre}</h3>
+        <div class="card-header">
+          <h3>${p.nombre}</h3>
+        </div>
         <p>${p.descripcion}</p>
         <div class="price">Q${p.precio.toFixed(2)}</div>
         <div class="status available">Disponible</div>
@@ -64,197 +263,40 @@ async function cargarProductosConEstado() {
     }
   }
 }
-// Productos
-const productos = [
-  {
-    id: 'C1',
-    nombre: 'Combo 1',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
-    precio: 1500,
-    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C1.JPEG',
-  },
-  {
-    id: 'C2',
-    nombre: 'Combo 2',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB.',
-    precio: 1500,
-    specs: ['Full HD', 'HDMI', '4000 lúmenes'],
-    img: 'imagenes/C2.JPEG',
-  },
-  {
-    id: 'C3',
-    nombre: 'Combo 3',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB.',
-    precio: 1500,
-    specs: ['24 pulgadas', 'HDMI', '75Hz'],
-    img: 'imagenes/C3.JPEG',
-  },
-  {
-    id: 'C4',
-    nombre: 'Combo 4',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
-    precio: 1500,
-    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C4.JPEG',
-  },
-  {
-    id: 'C5',
-    nombre: 'Combo 5',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
-    precio: 1500,
-    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C6.JPEG',
-  },
-  {
-    id: 'C6',
-    nombre: 'Combo 6',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
-    precio: 1500,
-    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C6.JPEG',
-  },
-  {
-    id: 'C7',
-    nombre: 'Combo 7',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
-    precio: 1500,
-    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C7.JPEG',
-  },
-  {
-    id: 'C8',
-    nombre: 'Combo 8',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
-    precio: 1500,
-    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C8.JPEG',
-  },
-  {
-    id: 'C9',
-    nombre: 'Combo 9',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
-    precio: 1500,
-    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C9.JPEG',
-  },
 
-  {
-    id: 'C10',
-    nombre: 'Combo 10',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
-    precio: 1500,
-    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C10.JPEG',
-  },
-  {
-    id: 'C11',
-    nombre: 'Combo 11',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
-    precio: 1500,
-    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C11.JPEG',
-  },
-  {
-    id: 'C12',
-    nombre: 'Combo 12',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
-    precio: 1500,
-    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C12.JPEG',
-  },
-  {
-    id: 'C13',
-    nombre: 'Combo 13',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
-    precio: 1500,
-    specs: ['Pantalla 15"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C13.JPEG',
-  },
-  {
-    id: 'C14',
-    nombre: 'Combo 14',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
-    precio: 1500,
-    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C14.JPEG',
-  },
-  {
-    id: 'C15',
-    nombre: 'Combo 15',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
-    precio: 1500,
-    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C15.JPEG',
-  },
-  {
-    id: 'C16',
-    nombre: 'Combo 16',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
-    precio: 1500,
-    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C16.JPEG',
-  },
-  {
-    id: 'C17',
-    nombre: 'Combo 17',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
-    precio: 1500,
-    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C17.JPEG',
-  },
-  {
-    id: 'C18',
-    nombre: 'Combo 18',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
-    precio: 1500,
-    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C18.JPEG',
-  },
-  {
-    id: 'C19',
-    nombre: 'Combo 19',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
-    precio: 1500,
-    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C19.JPEG',
-  },
-  {
-    id: 'C20',
-    nombre: 'Combo 20',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
-    precio: 1500,
-    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C20.JPEG',
-  },
-  {
-    id: 'C21',
-    nombre: 'Combo 21',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
-    precio: 1500,
-    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C21.JPEG',
-  },
-  {
-    id: 'C22',
-    nombre: 'Combo 22',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
-    precio: 1500,
-    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C22.JPEG',
-  },
-  {
-    id: 'C23',
-    nombre: 'Combo 23',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
-    precio: 1500,
-    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C23.JPEG',
-  },
-];
-
-// Cargar productos con estado real desde Firebase
-cargarProductosConEstado();
+// 🔥 INICIALIZAR FILTROS - MODIFICADA
+function inicializarFiltros() {
+  // Contar productos por categoría
+  contarProductosPorCategoria();
+  
+  // Configurar event listeners para botones de categoría
+  document.querySelectorAll('.category-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const categoria = this.getAttribute('data-category');
+      filtrarProductos(categoria);
+    });
+  });
+  
+  // Aplicar la categoría guardada al cargar la página
+  setTimeout(() => {
+    aplicarCategoriaGuardada();
+  }, 100);
+}
+// 🔥 FUNCIÓN PARA APLICAR CATEGORÍA GUARDADA
+function aplicarCategoriaGuardada() {
+  const categoriaGuardada = localStorage.getItem('categoriaActual') || 'all';
+  
+  // Actualizar botón activo
+  document.querySelectorAll('.category-btn').forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.getAttribute('data-category') === categoriaGuardada) {
+      btn.classList.add('active');
+    }
+  });
+  
+  // Aplicar filtro
+  filtrarProductos(categoriaGuardada);
+}
 
 // Referencias a elementos del modal detalle
 const modal = document.getElementById('modal');
@@ -430,7 +472,9 @@ document.getElementById('reserveForm').addEventListener('submit', async (e) => {
     
     if (!disponible) {
       alert('❌ Este equipo ya fue reservado por otra persona.');
-      location.reload();
+      // En lugar de recargar, actualizar la vista
+      cargarProductosConEstado();
+      formModal.style.display = 'none';
       return;
     }
 
@@ -440,7 +484,11 @@ document.getElementById('reserveForm').addEventListener('submit', async (e) => {
     if (resultado.success) {
       alert(`✅ RESERVA EXITOSA!\n\n📦 ${selectedProduct.nombre}\n👤 ${nombre}\n📞 ${telefono}\n🔐 ${code}\n\nLos datos se guardaron en la nube.`);
       formModal.style.display = 'none';
-      location.reload();
+      
+      // En lugar de recargar toda la página, actualizar solo los productos
+      guardarReservaLocal(datosReserva);
+      await cargarProductosConEstado();
+      
     } else {
       throw new Error(resultado.error);
     }
@@ -451,12 +499,16 @@ document.getElementById('reserveForm').addEventListener('submit', async (e) => {
     guardarReservaLocal(datosReserva);
     alert(`✅ RESERVA EXITOSA (modo local)\nCódigo: ${code}\n\nNota: Los datos se guardaron localmente.`);
     formModal.style.display = 'none';
-    location.reload();
+    
+    // En lugar de recargar, actualizar la vista
+    await cargarProductosConEstado();
   } finally {
     boton.textContent = textoOriginal;
     boton.disabled = false;
   }
 });
+
+
 
 // Función localStorage como backup
 function guardarReservaLocal(datos) {
@@ -466,33 +518,31 @@ function guardarReservaLocal(datos) {
 }
 
 // --------------------------------------------------------------------
-// PANEL DE ADMINISTRADOR
+// PANEL DE ADMINISTRADOR - USANDO TU BOTÓN EXISTENTE
 // --------------------------------------------------------------------
-const adminBtn = document.getElementById('adminPanel');
-let modoAdminActivo = false;
 
-adminBtn.addEventListener('click', () => {
-  const pwd = prompt('Ingrese contraseña de administrador:');
-  if (pwd === ADMIN_PASSWORD) {
-    modoAdminActivo = !modoAdminActivo;
-    
-    if (modoAdminActivo) {
-      // Entrar en modo administrador
-      adminBtn.textContent = 'Salir del Modo Admin';
-      adminBtn.classList.remove('ghost');
-      adminBtn.classList.add('btn');
+// 🔥 TOGGLE MODO ADMINISTRADOR
+function toggleModoAdministrador() {
+  if (!modoAdminActivo) {
+    // Solicitar contraseña
+    const password = prompt('Ingrese la contraseña de administrador:');
+    if (password === ADMIN_PASSWORD) {
+      modoAdminActivo = true;
+      // Actualizar el botón existente
+      const adminBtn = document.getElementById('adminPanel');
+      if (adminBtn) {
+        adminBtn.textContent = 'Cerrar Panel Admin';
+        adminBtn.classList.remove('ghost');
+        adminBtn.classList.add('btn');
+      }
       mostrarPanelAdministrador();
-    } else {
-      // Salir del modo administrador
-      adminBtn.textContent = 'Modo Administrador';
-      adminBtn.classList.remove('btn');
-      adminBtn.classList.add('ghost');
-      ocultarPanelAdministrador();
+    } else if (password !== null) {
+      alert('Contraseña incorrecta');
     }
   } else {
-    alert('Contraseña incorrecta.');
+    cerrarPanelAdmin();
   }
-});
+}
 
 // 🔥 FUNCIÓN PARA MOSTRAR EL PANEL DE ADMINISTRADOR
 async function mostrarPanelAdministrador() {
@@ -561,13 +611,14 @@ function cerrarPanelAdmin() {
     panel.remove();
   }
   modoAdminActivo = false;
-  adminBtn.textContent = 'Modo Administrador';
-  adminBtn.classList.remove('btn');
-  adminBtn.classList.add('ghost');
-}
-
-function ocultarPanelAdministrador() {
-  cerrarPanelAdmin();
+  
+  // Restaurar el botón existente
+  const adminBtn = document.getElementById('adminPanel');
+  if (adminBtn) {
+    adminBtn.textContent = 'Modo Administrador';
+    adminBtn.classList.remove('btn');
+    adminBtn.classList.add('ghost');
+  }
 }
 
 // 🔥 CARGAR RESERVAS ACTIVAS
@@ -772,12 +823,14 @@ function configurarTabs() {
   });
 }
 
-// --------------------------------------------------------------------
-// Accesibilidad: cerrar modales con ESC
-// --------------------------------------------------------------------
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    if (formModal.style.display === 'flex') formModal.style.display = 'none';
-    if (modal.style.display === 'flex') { modal.style.display = 'none'; modal.setAttribute('aria-hidden','true'); }
+// 🔥 INICIALIZAR LA APLICACIÓN
+document.addEventListener('DOMContentLoaded', function() {
+  inicializarFiltros();
+  //filtrarProductos('all'); // Cargar todos los productos inicialmente
+  
+  // Configurar el botón existente de administrador
+  const adminBtn = document.getElementById('adminPanel');
+  if (adminBtn) {
+    adminBtn.addEventListener('click', toggleModoAdministrador);
   }
 });

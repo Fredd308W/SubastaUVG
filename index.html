@@ -32,6 +32,38 @@
         <button class="btn" id="viewAll">Solicitar información</button>
       </div>
     </section>
+<!-- 🔥 FILTRO DE CATEGORÍAS -->
+<section class="categories-filter">
+  <div class="container">
+    <div class="filter-header">
+      <h3>Filtrar por Categoría</h3>
+      <div class="filter-count">
+        <span id="productCount">0</span> productos encontrados
+      </div>
+    </div>
+    <div class="categories-grid">
+      <button class="category-btn active" data-category="all">
+        <span class="category-icon">📦</span>
+        <span>Todos los equipos</span>
+      </button>
+      <button class="category-btn" data-category="combos">
+        <span class="category-icon">🎮</span>
+        <span>Combos</span>
+        <span class="category-badge" id="count-combos">0</span>
+      </button>
+      <button class="category-btn" data-category="laptops">
+        <span class="category-icon">💻</span>
+        <span>Laptops</span>
+        <span class="category-badge" id="count-laptops">0</span>
+      </button>
+      <button class="category-btn" data-category="ups">
+        <span class="category-icon">🔋</span>
+        <span>UPS</span>
+        <span class="category-badge" id="count-ups">0</span>
+      </button>
+    </div>
+  </div>
+</section>
 
     <main id="catalog">
       <div class="grid" id="productsGrid" aria-live="polite"></div>
