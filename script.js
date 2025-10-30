@@ -1042,8 +1042,7 @@ document.getElementById('reserveForm').addEventListener('submit', async (e) => {
     
     if (!disponible) {
       alert('❌ Este equipo ya fue reservado por otra persona.');
-      // En lugar de recargar, actualizar la vista
-      cargarProductosConEstado();
+      await cargarProductosConEstado();
       formModal.style.display = 'none';
       return;
     }
@@ -1052,10 +1051,20 @@ document.getElementById('reserveForm').addEventListener('submit', async (e) => {
     const resultado = await reservarEnFirebase(datosReserva);
     
     if (resultado.success) {
-      alert(`✅ RESERVA EXITOSA!\n\n📦 ${selectedProduct.nombre}\n👤 ${nombre}\n📞 ${telefono}\n🔐 ${code}\n\nLos datos se guardaron en la nube.`);
-      formModal.style.display = 'none';
+      // ✅ Enviar mensaje por WhatsApp
+      const mensaje = `✅ *Reserva Exitosa* %0A
+ *Producto:* ${selectedProduct.nombre} %0A
+ *Nombre:* ${nombre} %0A
+ *Teléfono:* ${telefono} %0A
+ *Precio:* Q${selectedProduct.precio} %0A
+ *Código:* ${code} %0A
+ Gracias por tu compra.`;
       
-      // En lugar de recargar toda la página, actualizar solo los productos
+      const numeroWhatsApp = telefono.replace(/\D/g, ''); // Limpia el número
+      const url = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
+      window.open(url, '_blank');
+
+      formModal.style.display = 'none';
       guardarReservaLocal(datosReserva);
       await cargarProductosConEstado();
       
@@ -1065,12 +1074,9 @@ document.getElementById('reserveForm').addEventListener('submit', async (e) => {
     
   } catch (error) {
     console.error('Error:', error);
-    // Fallback a localStorage
     guardarReservaLocal(datosReserva);
     alert(`✅ RESERVA EXITOSA (modo local)\nCódigo: ${code}\n\nNota: Los datos se guardaron localmente.`);
     formModal.style.display = 'none';
-    
-    // En lugar de recargar, actualizar la vista
     await cargarProductosConEstado();
   } finally {
     boton.textContent = textoOriginal;
