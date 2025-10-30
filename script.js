@@ -331,7 +331,7 @@ const productos = [
     descripcion: 'Buen estado, 8GB RAM, SSD 447GB',
     precio: 1100,
     specs: ['Windows 10', 'SSD 447GB', 'Intel i3 4030U'],
-    img: 'imagenes/Laptops/L01.png',
+    img: 'imagenes/Laptops/L02.png',
     categoria: 'laptops'
   },
   {
