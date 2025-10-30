@@ -25,6 +25,7 @@ body{
   margin:0 auto;
   padding:0 24px;
 }
+
 header.site-header{
   display:flex;
   align-items:center;
@@ -680,4 +681,123 @@ footer.site-footer{
     flex-direction: column;
     align-items: flex-start;
   }
+  
+}
+/* 🔥 ESTILOS ADICIONALES PARA LA CARGA MEJORADA */
+
+/* Estados de carga y error */
+.loading-products, .error-products {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  grid-column: 1 / -1;
+  background: var(--card);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.08);
+  margin: 20px 0;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255,255,255,0.1);
+  border-top: 4px solid var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-products p {
+  color: var(--muted);
+  font-size: 15px;
+  margin: 0;
+}
+
+.no-products-icon, .error-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.7;
+}
+
+.error-products {
+  color: var(--danger);
+  background: rgba(239, 68, 68, 0.05);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.error-products h3 {
+  color: var(--danger);
+  margin-bottom: 8px;
+}
+
+.error-products p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Mejora para los estados de productos */
+.no-products {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  grid-column: 1 / -1;
+  background: var(--card);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.08);
+  margin: 20px 0;
+}
+
+.no-products h3 {
+  color: #f8fafc;
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.no-products p {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Mejora visual para las tarjetas durante la carga */
+.card {
+  transition: all 0.3s ease;
+}
+
+/* Efecto de desvanecimiento para transiciones suaves */
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Estado de carga para botones de categoría */
+.category-btn.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.category-btn.loading::after {
+  content: '';
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 8px;
 }

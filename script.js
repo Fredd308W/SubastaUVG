@@ -17,6 +17,91 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 const db = firebase.firestore();
+// 🔥 ESTILOS ADICIONALES PARA LA CARGA MEJORADA
+const estilosAdicionales = `
+.loading-products, .error-products {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  grid-column: 1 / -1;
+  background: var(--card);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.08);
+  margin: 20px 0;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255,255,255,0.1);
+  border-top: 4px solid var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-products p {
+  color: var(--muted);
+  font-size: 15px;
+  margin: 0;
+}
+
+.no-products-icon, .error-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.7;
+}
+
+.error-products {
+  color: var(--danger);
+  background: rgba(239, 68, 68, 0.05);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.error-products h3 {
+  color: var(--danger);
+  margin-bottom: 8px;
+}
+
+.error-products p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.no-products {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  grid-column: 1 / -1;
+  background: var(--card);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.08);
+  margin: 20px 0;
+}
+
+.no-products h3 {
+  color: #f8fafc;
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.no-products p {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0;
+}
+`;
 
 // Productos CON CATEGORÍAS - AGREGADOS LAPTOPS Y UPS
 const productos = [
@@ -27,7 +112,7 @@ const productos = [
     descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
     precio: 1500,
     specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C1.JPEG',
+    img: 'imagenes/C1.png',
     categoria: 'combos'
   },
   {
@@ -36,7 +121,7 @@ const productos = [
     descripcion: 'Excelente estado, 16GB RAM, SSD 512GB.',
     precio: 1500,
     specs: ['Full HD', 'HDMI', '4000 lúmenes'],
-    img: 'imagenes/C2.JPEG',
+    img: 'imagenes/C2.png',
     categoria: 'combos'
   },
   {
@@ -45,7 +130,7 @@ const productos = [
     descripcion: 'Excelente estado, 16GB RAM, SSD 512GB.',
     precio: 1500,
     specs: ['Full HD', 'HDMI', '4000 lúmenes'],
-    img: 'imagenes/C3.JPEG',
+    img: 'imagenes/C3.png',
     categoria: 'combos'
   },
   {
@@ -54,7 +139,7 @@ const productos = [
     descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
     precio: 1500,
     specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C4.JPEG',
+    img: 'imagenes/C4.png',
     categoria: 'combos'
   },
   {
@@ -63,7 +148,7 @@ const productos = [
     descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
     precio: 1500,
     specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C6.JPEG',
+    img: 'imagenes/C6.png',
     categoria: 'combos'
   },
   {
@@ -72,7 +157,7 @@ const productos = [
     descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
     precio: 1500,
     specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C6.JPEG',
+    img: 'imagenes/C6.png',
     categoria: 'combos'
   },
   {
@@ -81,7 +166,7 @@ const productos = [
     descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
     precio: 1500,
     specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C7.JPEG',
+    img: 'imagenes/C7.png',
     categoria: 'combos'
   },
   {
@@ -90,7 +175,7 @@ const productos = [
     descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
     precio: 1500,
     specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C8.JPEG',
+    img: 'imagenes/C8.png',
     categoria: 'combos'
   },
   {
@@ -99,7 +184,7 @@ const productos = [
     descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
     precio: 1500,
     specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C9.JPEG',
+    img: 'imagenes/C9.png',
     categoria: 'combos'
   },
 
@@ -109,7 +194,7 @@ const productos = [
     descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
     precio: 1500,
     specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C10.JPEG',
+    img: 'imagenes/C10.png',
     categoria: 'combos'
   },
   {
@@ -118,7 +203,7 @@ const productos = [
     descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
     precio: 1500,
     specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C11.JPEG',
+    img: 'imagenes/C11.png',
     categoria: 'combos'
   },
   {
@@ -127,7 +212,7 @@ const productos = [
     descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
     precio: 1500,
     specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C12.JPEG',
+    img: 'imagenes/C12.png',
     categoria: 'combos'
   },
   {
@@ -136,7 +221,7 @@ const productos = [
     descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
     precio: 1500,
     specs: ['Pantalla 15"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C13.JPEG',
+    img: 'imagenes/C13.png',
     categoria: 'combos'
   },
   {
@@ -145,7 +230,7 @@ const productos = [
     descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
     precio: 1500,
     specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C14.JPEG',
+    img: 'imagenes/C14.png',
     categoria: 'combos'
   },
   {
@@ -154,7 +239,7 @@ const productos = [
     descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
     precio: 1500,
     specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C15.JPEG',
+    img: 'imagenes/C15.png',
     categoria: 'combos'
   },
   {
@@ -163,7 +248,7 @@ const productos = [
     descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
     precio: 1500,
     specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C16.JPEG',
+    img: 'imagenes/C16.png',
     categoria: 'combos'
   },
   {
@@ -172,7 +257,7 @@ const productos = [
     descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
     precio: 1500,
     specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C17.JPEG',
+    img: 'imagenes/C17.png',
     categoria: 'combos'
   },
   {
@@ -181,7 +266,7 @@ const productos = [
     descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
     precio: 1500,
     specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C18.JPEG',
+    img: 'imagenes/C18.png',
     categoria: 'combos'
   },
   {
@@ -190,7 +275,7 @@ const productos = [
     descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
     precio: 1500,
     specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C19.JPEG',
+    img: 'imagenes/C19.png',
     categoria: 'combos'
   },
   {
@@ -199,7 +284,7 @@ const productos = [
     descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
     precio: 1500,
     specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C20.JPEG',
+    img: 'imagenes/C20.png',
     categoria: 'combos'
   },
   {
@@ -208,7 +293,7 @@ const productos = [
     descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
     precio: 1500,
     specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C21.JPEG',
+    img: 'imagenes/C21.png',
     categoria: 'combos'
   },
   {
@@ -217,7 +302,7 @@ const productos = [
     descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
     precio: 1500,
     specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C22.JPEG',
+    img: 'imagenes/C22.png',
     categoria: 'combos'
   },
   {
@@ -226,7 +311,7 @@ const productos = [
     descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
     precio: 1500,
     specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C23.JPEG',
+    img: 'imagenes/C23.png',
     categoria: 'combos'
   },
 
@@ -470,11 +555,17 @@ const productos = [
   }
 ];
 
-// 🔥 VARIABLES GLOBALES PARA FILTROS
+// 🔥 VARIABLES GLOBALES PARA CONTROL DE CARGA
 let categoriaActual = localStorage.getItem('categoriaActual') || 'all';
 let productosFiltrados = [];
 let modoAdminActivo = false;
+let cargaEnProgreso = false;
+let ultimaCargaId = 0; // Para identificar y cancelar cargas antiguas
 
+// Ejecutar esta función al inicio
+limpiarYReorganizarDatos();
+// Llama esta función al inicio
+verificarIntegridadDatos();
 // 🔥 FUNCIONES AUXILIARES PARA CATEGORÍAS (simplificadas)
 function obtenerIconoCategoria(categoria) {
   const icons = {
@@ -494,8 +585,7 @@ function obtenerNombreCategoria(categoria) {
   };
   return nombres[categoria] || 'Producto';
 }
-
-// 🔥 FUNCIÓN PARA CONTAR PRODUCTOS POR CATEGORÍA
+// 🔥 FUNCIÓN PARA CONTAR PRODUCTOS POR CATEGORÍA (FALTANTE)
 function contarProductosPorCategoria() {
   const counts = {
     all: productos.length,
@@ -517,18 +607,26 @@ function contarProductosPorCategoria() {
     document.getElementById('count-ups').textContent = counts.ups;
   }
 }
-
-// 🔥 FUNCIÓN PARA FILTRAR PRODUCTOS - MODIFICADA
+// 🔥 FUNCIÓN MEJORADA PARA FILTRAR PRODUCTOS
 function filtrarProductos(categoria) {
+  console.log(`🎯 Filtrando por categoría: ${categoria}`);
+  
+  // CANCELAR CARGAS ANTERIORES INCREMENTANDO EL ID
+  ultimaCargaId++;
+  
   categoriaActual = categoria;
-  // Guardar la categoría actual en localStorage
   localStorage.setItem('categoriaActual', categoria);
   
+  // LIMPIAR el array de productos filtrados
+  productosFiltrados = [];
+  
   if (categoria === 'all') {
-    productosFiltrados = productos;
+    productosFiltrados = [...productos];
   } else {
     productosFiltrados = productos.filter(producto => producto.categoria === categoria);
   }
+  
+  console.log(`📦 Productos después de filtrar: ${productosFiltrados.length}`);
   
   // Actualizar contador
   if (document.getElementById('productCount')) {
@@ -543,102 +641,167 @@ function filtrarProductos(categoria) {
     }
   });
   
-  // Recargar productos
+  // Recargar productos CON CONTROL DE CARGA
   cargarProductosConEstado();
 }
 
-// 🔥 FUNCIÓN PARA CARGAR PRODUCTOS CON ESTADO REAL Y FILTRO - MEJORADA
+// 🔥 FUNCIÓN MEJORADA PARA CARGAR PRODUCTOS CON CONTROL DE CANCELACIÓN
 async function cargarProductosConEstado() {
   const grid = document.getElementById('productsGrid');
   if (!grid) return;
   
-  grid.innerHTML = '';
-  
-  const productosAMostrar = categoriaActual === 'all' ? productos : productosFiltrados;
-  
-  if (productosAMostrar.length === 0) {
-    grid.innerHTML = `
-      <div class="no-products">
-        <div class="no-products-icon">🔍</div>
-        <h3>No se encontraron productos</h3>
-        <p>No hay equipos disponibles en esta categoría.</p>
-      </div>
-    `;
+  // 🔒 BLOQUEAR NUEVAS CARGAS MIENTRAS UNA ESTÁ EN PROGRESO
+  if (cargaEnProgreso) {
+    console.log('⏳ Carga en progreso, ignorando solicitud...');
     return;
   }
   
-  // Limpiar el grid completamente antes de agregar nuevos elementos
-  grid.innerHTML = '';
+  // 🆔 IDENTIFICADOR ÚNICO PARA ESTA CARGA
+  const cargaId = ++ultimaCargaId;
+  console.log(`🔄 Iniciando carga #${cargaId} para categoría: ${categoriaActual}`);
   
-  for (const p of productosAMostrar) {
-    try {
-      // Verificar en Firebase si está reservado
-      const reservadoEnFirebase = await verificarDisponibilidad(p.id);
-      const reservadoEnLocal = localStorage.getItem(p.id) === 'reservado';
+  cargaEnProgreso = true;
+  
+  try {
+    // MOSTRAR LOADING
+    grid.innerHTML = `
+      <div class="loading-products">
+        <div class="spinner"></div>
+        <p>Cargando productos...</p>
+      </div>
+    `;
+    
+    const productosAMostrar = categoriaActual === 'all' ? productos : productosFiltrados;
+    
+    console.log(`📊 Productos a mostrar: ${productosAMostrar.length}`);
+    
+    if (productosAMostrar.length === 0) {
+      // VERIFICAR SI ESTA CARGA SIGUE SIENDO VÁLIDA
+      if (cargaId !== ultimaCargaId) {
+        console.log('🚫 Carga cancelada - obsoleta');
+        return;
+      }
       
-      // Si está reservado en Firebase O en local, mostrar como reservado
-      const reservado = !reservadoEnFirebase || reservadoEnLocal;
+      grid.innerHTML = `
+        <div class="no-products">
+          <div class="no-products-icon">🔍</div>
+          <h3>No se encontraron productos</h3>
+          <p>No hay equipos disponibles en esta categoría.</p>
+        </div>
+      `;
+      return;
+    }
+    
+    // 🔥 CARGAR TODOS LOS ESTADOS PRIMERO (MÁS EFICIENTE)
+    const estadosProductos = await cargarEstadosProductos(productosAMostrar);
+    
+    // VERIFICAR SI ESTA CARGA SIGUE SIENDO VÁLIDA
+    if (cargaId !== ultimaCargaId) {
+      console.log('🚫 Carga cancelada - obsoleta');
+      return;
+    }
+    
+    // CONSTRUIR HTML DE UNA SOLA VEZ
+    const productosHTML = productosAMostrar.map((p, index) => {
+      const reservado = estadosProductos[index];
       
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `
-        <div class="img" style="background:url('${p.img}') center/cover; height:160px; border-radius:8px;"></div>
-        <div class="card-header">
-          <h3>${p.nombre}</h3>
+      return `
+        <div class="card">
+          <div class="img" style="background:url('${p.img}') center/cover; height:160px; border-radius:8px;"></div>
+          <div class="card-header">
+            <h3>${p.nombre}</h3>
+            <small style="color: #666; font-size: 0.8em;">ID: ${p.id} | Categoría: ${p.categoria}</small>
+          </div>
+          <p>${p.descripcion}</p>
+          <div class="price">Q${p.precio.toFixed(2)}</div>
+          <div class="status ${reservado ? 'solicited' : 'available'}">
+            ${reservado ? 'Reservado' : 'Disponible'}
+          </div>
+          <button class="btn request" data-id="${p.id}" ${reservado ? 'disabled style="opacity:0.5"' : ''}>
+            ${reservado ? 'Ya reservado' : 'Solicitar este equipo'}
+          </button>
         </div>
-        <p>${p.descripcion}</p>
-        <div class="price">Q${p.precio.toFixed(2)}</div>
-        <div class="status ${reservado ? 'solicited' : 'available'}">
-          ${reservado ? 'Reservado' : 'Disponible'}
-        </div>
-        <button class="btn request" data-id="${p.id}" ${reservado ? 'disabled style="opacity:0.5"' : ''}>
-          ${reservado ? 'Ya reservado' : 'Solicitar este equipo'}
-        </button>
       `;
-      grid.appendChild(card);
-    } catch (error) {
-      console.error(`Error cargando producto ${p.id}:`, error);
-      // En caso de error, mostrar como disponible
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `
-        <div class="img" style="background:url('${p.img}') center/cover; height:160px; border-radius:8px;"></div>
-        <div class="card-header">
-          <h3>${p.nombre}</h3>
+    }).join('');
+    
+    // VERIFICAR UNA ÚLTIMA VEZ ANTES DE ACTUALIZAR EL DOM
+    if (cargaId === ultimaCargaId) {
+      grid.innerHTML = productosHTML;
+      console.log(`✅ Carga #${cargaId} completada - ${productosAMostrar.length} productos`);
+    } else {
+      console.log('🚫 Carga cancelada - última verificación');
+    }
+    
+  } catch (error) {
+    console.error(`❌ Error en carga #${cargaId}:`, error);
+    
+    // SOLO MOSTRAR ERROR SI ESTA ES LA CARGA ACTUAL
+    if (cargaId === ultimaCargaId) {
+      grid.innerHTML = `
+        <div class="error-products">
+          <div class="error-icon">⚠️</div>
+          <h3>Error al cargar productos</h3>
+          <p>Intenta recargar la página.</p>
         </div>
-        <p>${p.descripcion}</p>
-        <div class="price">Q${p.precio.toFixed(2)}</div>
-        <div class="status available">Disponible</div>
-        <button class="btn request" data-id="${p.id}">Solicitar este equipo</button>
       `;
-      grid.appendChild(card);
+    }
+  } finally {
+    // 🔓 LIBERAR BLOQUEO SOLO SI ESTA ES LA CARGA ACTUAL
+    if (cargaId === ultimaCargaId) {
+      cargaEnProgreso = false;
     }
   }
 }
+// 🔥 NUEVA FUNCIÓN PARA CARGAR ESTADOS EN LOTE
+async function cargarEstadosProductos(productosACargar) {
+  try {
+    // CREAR TODAS LAS PROMESAS A LA VEZ
+    const promesasEstados = productosACargar.map(producto => 
+      verificarDisponibilidad(producto.id)
+        .then(disponible => {
+          const reservadoEnLocal = localStorage.getItem(producto.id) === 'reservado';
+          return !disponible || reservadoEnLocal;
+        })
+        .catch(error => {
+          console.error(`Error verificando ${producto.id}:`, error);
+          return false; // Por defecto disponible si hay error
+        })
+    );
+    
+    // ESPERAR A QUE TODAS LAS VERIFICACIONES TERMINEN
+    return await Promise.all(promesasEstados);
+  } catch (error) {
+    console.error('Error cargando estados:', error);
+    return productosACargar.map(() => false); // Todos disponibles por defecto
+  }
+}
 
-// 🔥 INICIALIZAR FILTROS - MODIFICADA
+// 🔥 INICIALIZAR FILTROS - ACTUALIZADA
 function inicializarFiltros() {
-  // Contar productos por categoría
   contarProductosPorCategoria();
   
-  // Configurar event listeners para botones de categoría
   document.querySelectorAll('.category-btn').forEach(btn => {
     btn.addEventListener('click', function() {
       const categoria = this.getAttribute('data-category');
+      
+      // PREVENIR CLICS RÁPIDOS
+      if (cargaEnProgreso) {
+        console.log('⏳ Espera a que termine la carga actual...');
+        return;
+      }
+      
       filtrarProductos(categoria);
     });
   });
   
-  // Aplicar la categoría guardada al cargar la página
   setTimeout(() => {
     aplicarCategoriaGuardada();
   }, 100);
 }
-// 🔥 FUNCIÓN PARA APLICAR CATEGORÍA GUARDADA
+// 🔥 APLICAR CATEGORÍA GUARDADA - ACTUALIZADA
 function aplicarCategoriaGuardada() {
   const categoriaGuardada = localStorage.getItem('categoriaActual') || 'all';
-  
-  // Actualizar botón activo
+
   document.querySelectorAll('.category-btn').forEach(btn => {
     btn.classList.remove('active');
     if (btn.getAttribute('data-category') === categoriaGuardada) {
@@ -646,9 +809,63 @@ function aplicarCategoriaGuardada() {
     }
   });
   
-  // Aplicar filtro
+  // USAR LA FUNCIÓN MEJORADA DE FILTRADO
   filtrarProductos(categoriaGuardada);
 }
+
+// 🔥 FUNCIÓN PARA VERIFICAR INTEGRIDAD DE DATOS
+function verificarIntegridadDatos() {
+  console.log("🔍 Verificando integridad de datos...");
+  
+  // Verificar IDs duplicados
+  const ids = productos.map(p => p.id);
+  const duplicados = ids.filter((id, index) => ids.indexOf(id) !== index);
+  
+  if (duplicados.length > 0) {
+    console.warn("❌ IDs DUPLICADOS:", duplicados);
+  } else {
+    console.log("✅ Todos los IDs son únicos");
+  }
+  
+  // Verificar categorías
+  const categorias = {};
+  productos.forEach(p => {
+    if (!categorias[p.categoria]) categorias[p.categoria] = 0;
+    categorias[p.categoria]++;
+  });
+  console.log("📊 Productos por categoría:", categorias);
+  
+  // Verificar productos problemáticos
+  productos.forEach(p => {
+    if (!p.categoria || !p.id) {
+      console.warn("⚠️ Producto con datos incompletos:", p);
+    }
+  });
+}
+// 🔥 FUNCIÓN PARA LIMPIAR Y REORGANIZAR DATOS
+function limpiarYReorganizarDatos() {
+  console.log("🧹 Limpiando y reorganizando datos...");
+  
+  // Crear un nuevo array sin duplicados
+  const productosUnicos = [];
+  const idsVistos = new Set();
+  
+  productos.forEach(producto => {
+    if (!idsVistos.has(producto.id)) {
+      idsVistos.add(producto.id);
+      productosUnicos.push(producto);
+    } else {
+      console.warn(`🚨 Eliminando duplicado: ${producto.id}`);
+    }
+  });
+  
+  // Actualizar el array original
+  productos.length = 0;
+  productos.push(...productosUnicos);
+  
+  console.log(`✅ Datos limpiados. Productos únicos: ${productos.length}`);
+}
+
 
 // Referencias a elementos del modal detalle
 const modal = document.getElementById('modal');
@@ -792,6 +1009,7 @@ async function verificarDisponibilidad(idProducto) {
 }
 
 // 🔥 FORMULARIO ACTUALIZADO CON FIREBASE
+// 🔥 FORMULARIO ACTUALIZADO CON FIREBASE - MODIFICADO PARA NO RECARGAR
 document.getElementById('reserveForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   const nombre = document.getElementById('nombre').value.trim();
@@ -859,8 +1077,6 @@ document.getElementById('reserveForm').addEventListener('submit', async (e) => {
     boton.disabled = false;
   }
 });
-
-
 
 // Función localStorage como backup
 function guardarReservaLocal(datos) {
@@ -973,7 +1189,7 @@ function cerrarPanelAdmin() {
   }
 }
 
-// 🔥 CARGAR RESERVAS ACTIVAS
+// 🔥 FUNCIÓN MEJORADA PARA CARGAR RESERVAS ACTIVAS
 async function cargarReservasActivas() {
   try {
     const listaReservas = document.getElementById('lista-reservas');
@@ -1016,17 +1232,28 @@ async function cargarReservasActivas() {
   }
 }
 
-// 🔥 CARGAR LISTA DE PRODUCTOS PARA GESTIÓN
+// 🔥 FUNCIÓN MEJORADA PARA CARGAR LISTA DE PRODUCTOS (MÁS RÁPIDA)
 async function cargarListaProductos() {
   try {
     const listaProductos = document.getElementById('lista-productos');
     listaProductos.innerHTML = '<div class="loading">Cargando productos...</div>';
     
+    // 🔥 CARGAR TODAS LAS RESERVAS DE UNA VEZ PARA OPTIMIZAR
+    const snapshotReservas = await db.collection("reservas").get();
+    const productosReservados = new Set();
+    
+    snapshotReservas.forEach(doc => {
+      const reserva = doc.data();
+      if (reserva.idProducto) {
+        productosReservados.add(reserva.idProducto);
+      }
+    });
+    
     let html = '';
     for (const producto of productos) {
-      const disponible = await verificarDisponibilidad(producto.id);
-      const estado = disponible ? 'Disponible' : 'Reservado';
-      const claseEstado = disponible ? 'available' : 'solicited';
+      const reservado = productosReservados.has(producto.id);
+      const estado = reservado ? 'Reservado' : 'Disponible';
+      const claseEstado = reservado ? 'solicited' : 'available';
       
       html += `
         <div class="producto-admin-item">
@@ -1038,7 +1265,7 @@ async function cargarListaProductos() {
             </div>
           </div>
           <div class="producto-actions">
-            ${!disponible ? `
+            ${reservado ? `
               <button class="btn small success" onclick="liberarProducto('${producto.id}')">
                 Marcar como Disponible
               </button>
@@ -1059,21 +1286,55 @@ async function cargarListaProductos() {
   }
 }
 
-// 🔥 FUNCIONES DE GESTIÓN INDIVIDUAL
+// 🔥 FUNCIÓN MEJORADA PARA ELIMINAR RESERVA (ACTUALIZA VISTA)
 async function eliminarReserva(idReserva, idProducto) {
   if (confirm('¿Estás seguro de que quieres eliminar esta reserva?')) {
     try {
       await db.collection("reservas").doc(idReserva).delete();
+      
+      // 🔥 ACTUALIZAR INMEDIATAMENTE LA VISTA PRINCIPAL
+      await actualizarEstadoProducto(idProducto);
+      
       alert('✅ Reserva eliminada correctamente');
       await cargarReservasActivas();
       await cargarListaProductos();
+      
     } catch (error) {
       console.error('Error eliminando reserva:', error);
       alert('❌ Error eliminando reserva');
     }
   }
 }
-
+// 🔥 NUEVA FUNCIÓN PARA ACTUALIZAR ESTADO DE PRODUCTO ESPECÍFICO
+async function actualizarEstadoProducto(idProducto) {
+  // Limpiar localStorage
+  localStorage.removeItem(idProducto);
+  localStorage.removeItem(idProducto + '_code');
+  localStorage.removeItem(idProducto + '_datos');
+  
+  // 🔥 ACTUALIZAR LA VISTA PRINCIPAL SIN RECARGAR TODA LA PÁGINA
+  const grid = document.getElementById('productsGrid');
+  if (!grid) return;
+  
+  // Encontrar la tarjeta del producto y actualizar su estado
+  const cards = grid.querySelectorAll('.card');
+  cards.forEach(card => {
+    const button = card.querySelector('.request');
+    const status = card.querySelector('.status');
+    
+    if (button && button.dataset.id === idProducto) {
+      // Actualizar estado a disponible
+      status.textContent = 'Disponible';
+      status.className = 'status available';
+      
+      // Habilitar botón
+      button.disabled = false;
+      button.style.opacity = '1';
+      button.textContent = 'Solicitar este equipo';
+    }
+  });
+}
+// 🔥 FUNCIÓN MEJORADA PARA LIBERAR PRODUCTO
 async function liberarProducto(idProducto) {
   try {
     // Eliminar todas las reservas de este producto
@@ -1087,15 +1348,13 @@ async function liberarProducto(idProducto) {
     });
     await batch.commit();
     
-    // Limpiar localStorage también
-    localStorage.removeItem(idProducto);
-    localStorage.removeItem(idProducto + '_code');
-    localStorage.removeItem(idProducto + '_datos');
+    // 🔥 ACTUALIZAR INMEDIATAMENTE LA VISTA
+    await actualizarEstadoProducto(idProducto);
     
     alert('✅ Producto liberado correctamente');
     await cargarReservasActivas();
     await cargarListaProductos();
-    cargarProductosConEstado(); // Actualizar vista principal
+    
   } catch (error) {
     console.error('Error liberando producto:', error);
     alert('❌ Error liberando producto');
@@ -1175,14 +1434,34 @@ function configurarTabs() {
   });
 }
 
-// 🔥 INICIALIZAR LA APLICACIÓN
+// 🔥 INYECTAR ESTILOS ADICIONALES
+function injectarEstilosAdicionales() {
+  if (!document.getElementById('estilos-adicionales')) {
+    const styleSheet = document.createElement('style');
+    styleSheet.id = 'estilos-adicionales';
+    styleSheet.textContent = estilosAdicionales;
+    document.head.appendChild(styleSheet);
+  }
+}
+// 🔥 INICIALIZACIÓN MEJORADA
 document.addEventListener('DOMContentLoaded', function() {
-  inicializarFiltros();
-  //filtrarProductos('all'); // Cargar todos los productos inicialmente
+  console.log("🚀 Inicializando aplicación...");
   
-  // Configurar el botón existente de administrador
+  // Inyectar estilos adicionales
+  injectarEstilosAdicionales();
+  
+  // Limpiar y verificar datos
+  limpiarYReorganizarDatos();
+  verificarIntegridadDatos();
+  
+  // Inicializar filtros
+  inicializarFiltros();
+  
+  // Configurar el botón de administrador
   const adminBtn = document.getElementById('adminPanel');
   if (adminBtn) {
     adminBtn.addEventListener('click', toggleModoAdministrador);
   }
+  
+  console.log("✅ Aplicación inicializada correctamente");
 });
