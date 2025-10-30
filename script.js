@@ -710,7 +710,7 @@ async function cargarProductosConEstado() {
           <div class="img" style="background:url('${p.img}') center/cover; height:160px; border-radius:8px;"></div>
           <div class="card-header">
             <h3>${p.nombre}</h3>
-            <small style="color: #666; font-size: 0.8em;">ID: ${p.id} | Categoría: ${p.categoria}</small>
+            
           </div>
           <p>${p.descripcion}</p>
           <div class="price">Q${p.precio.toFixed(2)}</div>
