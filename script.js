@@ -233,40 +233,212 @@ const productos = [
   // LAPTOPS NUEVAS
   {
     id: 'L1',
-    nombre: 'Laptop ',
-    descripcion: 'Excelente estado, 8GB RAM, SSD 256GB',
+    nombre: 'Laptop DELL Latitude 3490',
+    descripcion: 'Excelente estado, 12GB RAM, SSD 480GB',
     precio: 1200,
-    specs: ['Pantalla 14"', 'Windows 11 Pro', 'SSD 256GB', 'Intel i5'],
-    img: 'imagenes/L1.PNG',
+    specs: ['Windows 11', 'SSD 480GB', 'Intel i5 7th generación'],
+    img: 'imagenes/Laptops/L01.png',
     categoria: 'laptops'
   },
   {
     id: 'L2',
-    nombre: 'Laptop Dell Latitude',
-    descripcion: 'Buen estado, 16GB RAM, HDD 1TB',
+    nombre: 'Laptop DELL Latitude E5440',
+    descripcion: 'Buen estado, 8GB RAM, SSD 447GB',
     precio: 1100,
-    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'HDD 1TB', 'Intel i7'],
-    img: 'imagenes/C28.JPEG',
+    specs: ['Windows 10', 'SSD 447GB', 'Intel i3 4030U'],
+    img: 'imagenes/Laptops/L01.png',
     categoria: 'laptops'
   },
   {
     id: 'L3',
-    nombre: 'Laptop Lenovo ThinkPad',
-    descripcion: 'Como nueva, 12GB RAM, SSD 512GB',
+    nombre: 'Laptop DELL Latitude 3490',
+    descripcion: 'Buen estado, 4GB RAM, SSD 480GB',
     precio: 1400,
-    specs: ['Pantalla 13.3"', 'Windows 11 Pro', 'SSD 512GB', 'Intel i5'],
-    img: 'imagenes/C28.JPEG',
+    specs: ['Windows 11', 'SSD 480GB', 'Intel i5 7th generación'],
+    img: 'imagenes/Laptops/L03.png',
     categoria: 'laptops'
   },
   {
     id: 'L4',
-    nombre: 'Laptop Apple MacBook Air',
-    descripcion: 'Excelente estado, 8GB RAM, SSD 256GB',
-    precio: 1800,
-    specs: ['Pantalla 13"', 'macOS', 'SSD 256GB', 'Chip M1'],
-    img: 'imagenes/C28.JPEG',
+    nombre: 'Laptop DELL Latitude 3490',
+    descripcion: 'Buen estado, 16GB RAM, SSD 480GB',
+    precio: 1400,
+    specs: ['Windows 11', 'SSD 480GB', 'Intel i5 7th generación'],
+    img: 'imagenes/Laptops/L04.png',
     categoria: 'laptops'
   },
+  {
+    id: 'L5',
+    nombre: 'Laptop DELL Latitude 3490',
+    descripcion: 'Buen estado, 4GB RAM, SSD 480GB',
+    precio: 1400,
+    specs: ['Windows 11', 'SSD 480GB', 'Intel i5 7th generación'],
+    img: 'imagenes/Laptops/L05.png',
+    categoria: 'laptops'
+  },
+  {
+    id: 'L6',
+    nombre: 'Laptop DELL Latitude 3490',
+    descripcion: 'Buen estado, 4GB RAM, SSD 480GB',
+    precio: 1400,
+    specs: ['Windows 11', 'SSD 480GB', 'Intel i5 7th generación'],
+    img: 'imagenes/Laptops/L06.png',
+    categoria: 'laptops'
+  },
+  {
+    id: 'L7',
+    nombre: 'Laptop DELL Latitude 3490',
+    descripcion: 'Buen estado, 12GB RAM, SSD 480GB',
+    precio: 1400,
+    specs: ['Windows 11', 'SSD 480GB', 'Intel i5 7th generación'],
+    img: 'imagenes/Laptops/L07.png',
+    categoria: 'laptops'
+  },
+  {
+    id: 'L8',
+    nombre: 'Laptop DELL Latitude 3490',
+    descripcion: 'Buen estado, 12GB RAM, SSD 480GB',
+    precio: 1400,
+    specs: ['Windows 11', 'SSD 480GB', 'Intel i5 7th generación'],
+    img: 'imagenes/Laptops/L08.png',
+    categoria: 'laptops'
+  },
+  {
+    id: 'L9',
+    nombre: 'Laptop DELL Latitude 3490',
+    descripcion: 'Buen estado, 8GB RAM, SSD 480GB',
+    precio: 1400,
+    specs: ['Windows 11', 'SSD 480GB', 'Intel i5 7th generación'],
+    img: 'imagenes/Laptops/L09.png',
+    categoria: 'laptops'
+  },
+  {
+    id: 'L10',
+    nombre: 'Laptop DELL Latitude 3490',
+    descripcion: 'Buen estado, 8GB RAM, SSD 480GB',
+    precio: 1400,
+    specs: ['Windows 11', 'SSD 480GB', 'Intel i5 7200U'],
+    img: 'imagenes/Laptops/L10.png',
+    categoria: 'laptops'
+  },
+  {
+    id: 'L11',
+    nombre: 'Laptop DELL Inspiron 5567',
+    descripcion: 'Buen estado, 8GB RAM, HDD 500GB',
+    precio: 1400,
+    specs: ['Windows 11', 'HDD 500GB', 'Intel i7 7200U'],
+    img: 'imagenes/Laptops/L11.png',
+    categoria: 'laptops'
+  },
+  {
+    id: 'L12',
+    nombre: 'Laptop DELL Latitude 5567',
+    descripcion: 'Buen estado, 12GB RAM, SSD 480GB',
+    precio: 1400,
+    specs: ['Windows 11', 'SSD 480GB', 'Intel i5 7th generación'],
+    img: 'imagenes/Laptops/L12.png',
+    categoria: 'laptops'
+  },
+  {
+    id: 'L13',
+    nombre: 'Laptop DELL Latitude 3490',
+    descripcion: 'Buen estado, 12GB RAM, SSD 480GB',
+    precio: 1400,
+    specs: ['Windows 11', 'SSD 480GB', 'Intel i5 7200U'],
+    img: 'imagenes/Laptops/L13.png',
+    categoria: 'laptops'
+  },
+  {
+    id: 'L14',
+    nombre: 'Laptop DELL Latitude 3490',
+    descripcion: 'Buen estado, 8GB RAM, SSD 480GB',
+    precio: 1400,
+    specs: ['Windows 11', 'SSD 480GB', 'Intel i5 7th generación'],
+    img: 'imagenes/Laptops/L14.png',
+    categoria: 'laptops'
+  },
+  {
+    id: 'L15',
+    nombre: 'Laptop DELL Latitude 5567',
+    descripcion: 'Buen estado, 8GB RAM, HDD 500GB',
+    precio: 1400,
+    specs: ['Windows 11', 'HDD 500GB', 'Intel i7 7200U'],
+    img: 'imagenes/Laptops/L15.png',
+    categoria: 'laptops'
+  },
+  {
+    id: 'L16',
+    nombre: 'Laptop DELL Latitude 3490',
+    descripcion: 'Buen estado, 8GB RAM, SSD 480GB',
+    precio: 1400,
+    specs: ['Windows 11', 'SSD 480GB', 'Intel i5 7200U'],
+    img: 'imagenes/Laptops/L16.png',
+    categoria: 'laptops'
+  },
+  {
+    id: 'L17',
+    nombre: 'Laptop DELL Latitude 3490',
+    descripcion: 'Buen estado, 12GB RAM, SSD 480GB',
+    precio: 1400,
+    specs: ['Windows 11', 'SSD 480GB', 'Intel i5 7th generación'],
+    img: 'imagenes/Laptops/L17.png',
+    categoria: 'laptops'
+  },
+  {
+    id: 'L18',
+    nombre: 'Laptop DELL Latitude 3490',
+    descripcion: 'Buen estado, 12GB RAM, SSD 480GB',
+    precio: 1400,
+    specs: ['Windows 11', 'SSD 480GB', 'Intel i5 7th generación'],
+    img: 'imagenes/Laptops/L18.png',
+    categoria: 'laptops'
+  },
+  {
+    id: 'L19',
+    nombre: 'Laptop DELL Latitude 3490',
+    descripcion: 'Buen estado, 12GB RAM, SSD 480GB',
+    precio: 1400,
+    specs: ['Windows 11', 'SSD 480GB', 'Intel i5 7th generación'],
+    img: 'imagenes/Laptops/L19.png',
+    categoria: 'laptops'
+  },
+  {
+    id: 'L20',
+    nombre: 'Laptop DELL Latitude E5440',
+    descripcion: 'Buen estado, 4GB RAM, SSD 480GB',
+    precio: 1400,
+    specs: ['Windows 11', 'SSD 480GB', 'Intel i3 inside'],
+    img: 'imagenes/Laptops/L20.png',
+    categoria: 'laptops'
+  },
+  {
+    id: 'L21',
+    nombre: 'Laptop DELL Latitude 5480',
+    descripcion: 'Buen estado, 4GB RAM, SSD 480GB',
+    precio: 1400,
+    specs: ['Windows 11', 'SSD 480GB', 'Intel i5 vPro 7th generación'],
+    img: 'imagenes/Laptops/L21.png',
+    categoria: 'laptops'
+  },
+  {
+    id: 'L22',
+    nombre: 'Laptop DELL Latitude 3470',
+    descripcion: 'Buen estado, 4GB RAM, SSD 480GB',
+    precio: 1400,
+    specs: ['Windows 11', 'SSD 480GB', 'Intel i5 inside'],
+    img: 'imagenes/Laptops/L22.png',
+    categoria: 'laptops'
+  },
+  {
+    id: 'L23',
+    nombre: 'Laptop DELL Latitude 3490',
+    descripcion: 'Buen estado, 12GB RAM, SSD 480GB',
+    precio: 1400,
+    specs: ['Windows 11', 'SSD 480GB', 'Intel i5 7200U'],
+    img: 'imagenes/Laptops/L23.png',
+    categoria: 'laptops'
+  },
+
 
   // UPS NUEVOS
   {
