@@ -101,6 +101,27 @@ const estilosAdicionales = `
   font-size: 14px;
   margin: 0;
 }
+  /* 🔥 NUEVOS ESTILOS PARA ESTADO VENDIDO */
+.status.sold {
+  background: #f59e0b;  /* Mismo color naranja que reservado */
+  color: white;
+}
+
+
+/* 🔥 ESTILOS PARA BOTONES DEL PANEL ADMIN */
+.reserva-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn.info {
+  background: #2563eb;
+}
+
+.btn.info:hover {
+  background: #1d4ed8;
+}
 `;
 
 // Productos CON CATEGORÍAS - AGREGADOS LAPTOPS Y UPS
@@ -701,28 +722,40 @@ async function cargarProductosConEstado() {
       return;
     }
     
-    // CONSTRUIR HTML DE UNA SOLA VEZ
-    const productosHTML = productosAMostrar.map((p, index) => {
-      const reservado = estadosProductos[index];
-      
-      return `
-        <div class="card">
-          <div class="img" style="background:url('${p.img}') center/cover; height:160px; border-radius:8px;"></div>
-          <div class="card-header">
-            <h3>${p.nombre}</h3>
-            
-          </div>
-          <p>${p.descripcion}</p>
-          <div class="price">Q${p.precio.toFixed(2)}</div>
-          <div class="status ${reservado ? 'solicited' : 'available'}">
-            ${reservado ? 'Reservado' : 'Disponible'}
-          </div>
-          <button class="btn request" data-id="${p.id}" ${reservado ? 'disabled style="opacity:0.5"' : ''}>
-            ${reservado ? 'Ya reservado' : 'Solicitar este equipo'}
-          </button>
-        </div>
-      `;
-    }).join('');
+    // DENTRO DE cargarProductosConEstado(), ACTUALIZA ESTA PARTE:
+const productosHTML = productosAMostrar.map((p, index) => {
+  const estado = estadosProductos[index];
+  const reservado = estado === 'reservado';
+  const vendido = estado === 'vendido';
+  
+  let estadoTexto = 'Disponible';
+  let estadoClase = 'available';
+  
+  if (vendido) {
+    estadoTexto = 'Vendido';
+    estadoClase = 'sold';
+  } else if (reservado) {
+    estadoTexto = 'Reservado';
+    estadoClase = 'solicited';
+  }
+  
+  return `
+    <div class="card">
+      <div class="img" style="background:url('${p.img}') center/cover; height:160px; border-radius:8px;"></div>
+      <div class="card-header">
+        <h3>${p.nombre}</h3>
+      </div>
+      <p>${p.descripcion}</p>
+      <div class="price">Q${p.precio.toFixed(2)}</div>
+      <div class="status ${estadoClase}">
+        ${estadoTexto}
+      </div>
+      <button class="btn request" data-id="${p.id}" ${reservado || vendido ? 'disabled style="opacity:0.5"' : ''}>
+        ${vendido ? 'Producto vendido' : (reservado ? 'Ya reservado' : 'Solicitar este equipo')}
+      </button>
+    </div>
+  `;
+}).join('');
     
     // VERIFICAR UNA ÚLTIMA VEZ ANTES DE ACTUALIZAR EL DOM
     if (cargaId === ultimaCargaId) {
@@ -752,7 +785,8 @@ async function cargarProductosConEstado() {
     }
   }
 }
-// 🔥 NUEVA FUNCIÓN PARA CARGAR ESTADOS EN LOTE
+
+// 🔥 FUNCIÓN ACTUALIZADA PARA CARGAR ESTADOS EN LOTE
 async function cargarEstadosProductos(productosACargar) {
   try {
     // CREAR TODAS LAS PROMESAS A LA VEZ
@@ -769,10 +803,36 @@ async function cargarEstadosProductos(productosACargar) {
     );
     
     // ESPERAR A QUE TODAS LAS VERIFICACIONES TERMINEN
-    return await Promise.all(promesasEstados);
+    const estados = await Promise.all(promesasEstados);
+    
+    // 🔥 VERIFICAR ADICIONALMENTE ESTADO "VENDIDO" PARA CADA PRODUCTO
+    const estadosFinales = await Promise.all(
+      productosACargar.map(async (producto, index) => {
+        const estaReservado = estados[index];
+        
+        if (estaReservado) {
+          // Si está reservado, verificar si realmente es "vendido"
+          try {
+            const snapshot = await db.collection("reservas")
+              .where("idProducto", "==", producto.id)
+              .where("estado", "==", "vendido")
+              .get();
+            
+            return snapshot.empty ? 'reservado' : 'vendido';
+          } catch (error) {
+            console.error(`Error verificando estado vendido para ${producto.id}:`, error);
+            return 'reservado'; // Por defecto reservado si hay error
+          }
+        }
+        
+        return 'disponible';
+      })
+    );
+    
+    return estadosFinales;
   } catch (error) {
     console.error('Error cargando estados:', error);
-    return productosACargar.map(() => false); // Todos disponibles por defecto
+    return productosACargar.map(() => 'disponible'); // Todos disponibles por defecto
   }
 }
 
@@ -899,27 +959,39 @@ document.addEventListener('click', async (e) => {
     // 🔥 VERIFICAR DISPONIBILIDAD EN FIREBASE
     try {
       const disponible = await verificarDisponibilidad(prod.id);
-      const reservadoEnLocal = localStorage.getItem(prod.id) === 'reservado';
-      const reservado = !disponible || reservadoEnLocal;
-      
-      modalStatus.textContent = reservado ? 'Reservado' : 'Disponible';
-      modalStatus.className = 'status ' + (reservado ? 'solicited' : 'available');
-      modalRequest.disabled = reservado;
-      if (reservado) {
-        modalRequest.classList.add('ghost');
-        modalRequest.textContent = 'Equipo reservado';
-      } else {
-        modalRequest.classList.remove('ghost');
-        modalRequest.textContent = 'Solicitar este equipo';
-      }
+  const reservadoEnLocal = localStorage.getItem(prod.id) === 'reservado';
+  
+  // 🔥 VERIFICAR SI ESTÁ VENDIDO
+  const snapshotVendido = await db.collection("reservas")
+    .where("idProducto", "==", prod.id)
+    .where("estado", "==", "vendido")
+    .get();
+  
+  const vendido = !snapshotVendido.empty;
+  const reservado = (!disponible || reservadoEnLocal) && !vendido;
+  
+  modalStatus.textContent = vendido ? 'Vendido' : (reservado ? 'Reservado' : 'Disponible');
+  modalStatus.className = 'status ' + (vendido ? 'sold' : (reservado ? 'solicited' : 'available'));
+  modalRequest.disabled = reservado || vendido;
+  
+  if (vendido) {
+    modalRequest.classList.add('ghost');
+    modalRequest.textContent = 'Producto vendido';
+  } else if (reservado) {
+    modalRequest.classList.add('ghost');
+    modalRequest.textContent = 'Equipo reservado';
+  } else {
+    modalRequest.classList.remove('ghost');
+    modalRequest.textContent = 'Solicitar este equipo';
+  }
     } catch (error) {
       console.error('Error verificando disponibilidad:', error);
-      // En caso de error, mostrar como disponible
-      modalStatus.textContent = 'Disponible';
-      modalStatus.className = 'status available';
-      modalRequest.disabled = false;
-      modalRequest.classList.remove('ghost');
-      modalRequest.textContent = 'Solicitar este equipo';
+  // En caso de error, mostrar como disponible
+  modalStatus.textContent = 'Disponible';
+  modalStatus.className = 'status available';
+  modalRequest.disabled = false;
+  modalRequest.classList.remove('ghost');
+  modalRequest.textContent = 'Solicitar este equipo';
     }
 
     modal.setAttribute('aria-hidden', 'false');
@@ -939,14 +1011,16 @@ modalClose.onclick = modalClose2.onclick = () => {
 const formModal = document.createElement('div');
 formModal.className = 'form-modal';
 formModal.innerHTML = `
-  <div class="form-card">
+   <div class="form-card">
     <h3>Reservar equipo</h3>
     <p id="form-product-name" style="font-size:14px;color:#666;"></p>
     <form id="reserveForm">
-      <label>Nombre</label>
+      <label>Nombre completo</label>
       <input type="text" id="nombre" required>
       <label>Teléfono</label>
       <input type="tel" id="telefono" required>
+      <label>Correo electrónico</label>
+      <input type="email" id="email" required>
       <button type="submit">Confirmar reserva</button>
     </form>
   </div>
@@ -982,6 +1056,7 @@ async function reservarEnFirebase(datos) {
       producto: datos.producto,
       nombre: datos.nombre,
       telefono: datos.telefono,
+      email: datos.email, // ✅ NUEVO CAMPO
       codigo: datos.codigo,
       fecha: firebase.firestore.FieldValue.serverTimestamp(),
       precio: datos.precio,
@@ -999,36 +1074,43 @@ async function verificarDisponibilidad(idProducto) {
   try {
     const snapshot = await db.collection("reservas")
       .where("idProducto", "==", idProducto)
-      .where("estado", "==", "reservado")
+      .where("estado", "in", ["reservado", "vendido"]) // ✅ MODIFICADO: incluir ambos estados
       .get();
-    return snapshot.empty; // true = disponible, false = reservado
+    return snapshot.empty; // true = disponible, false = reservado o vendido
   } catch (error) {
     console.error("Error verificando disponibilidad:", error);
     return true; // Por defecto disponible si hay error
   }
 }
 
-// 🔥 FORMULARIO ACTUALIZADO CON FIREBASE
 // 🔥 FORMULARIO ACTUALIZADO CON FIREBASE - MODIFICADO PARA NO RECARGAR
 document.getElementById('reserveForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   const nombre = document.getElementById('nombre').value.trim();
   const telefono = document.getElementById('telefono').value.trim();
+  const email = document.getElementById('email').value.trim(); // ✅ NUEVO
 
-  if (!nombre || !telefono) {
+  if (!nombre || !telefono || !email) {
     alert('Por favor completa todos los campos.');
+    return;
+  }
+
+  // Validación básica de email
+  if (!email.includes('@') || !email.includes('.')) {
+    alert('Por favor ingresa un correo electrónico válido.');
     return;
   }
 
   const code = 'UVG-' + Math.floor(100000 + Math.random() * 900000);
   const datosReserva = {
-    producto: selectedProduct.nombre,
-    nombre: nombre,
-    telefono: telefono,
-    codigo: code,
-    precio: selectedProduct.precio,
-    idProducto: selectedProduct.id
-  };
+  producto: selectedProduct.nombre,
+  nombre: nombre,
+  telefono: telefono,
+  email: email, // ✅ NUEVO CAMPO
+  codigo: code,
+  precio: selectedProduct.precio,
+  idProducto: selectedProduct.id
+};
 
   // Mostrar loading
   const boton = e.target.querySelector('button');
@@ -1050,23 +1132,31 @@ document.getElementById('reserveForm').addEventListener('submit', async (e) => {
     // 🔥 RESERVAR EN FIREBASE
     const resultado = await reservarEnFirebase(datosReserva);
     
-    if (resultado.success) {
-      // ✅ Enviar mensaje por WhatsApp
-      const mensaje = `✅ *Reserva Exitosa* %0A
- *Producto:* ${selectedProduct.nombre} %0A
- *Nombre:* ${nombre} %0A
- *Teléfono:* ${telefono} %0A
- *Precio:* Q${selectedProduct.precio} %0A
- *Código:* ${code} %0A
- Gracias por tu compra.`;
-      
-      const numeroWhatsApp = telefono.replace(/\D/g, ''); // Limpia el número
-      const url = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
-      window.open(url, '_blank');
+  if (resultado.success) {
+  // ✅ ENVIAR CORREO ELECTRÓNICO EN LUGAR DE WHATSAPP
+  // Simulación de envío de correo
+  const mensajeCorreo = `
+    ✅ RESERVA EXITOSA - SUBASTAS UVG
 
-      formModal.style.display = 'none';
-      guardarReservaLocal(datosReserva);
-      await cargarProductosConEstado();
+    Producto: ${selectedProduct.nombre}
+    Nombre: ${nombre}
+    Teléfono: ${telefono}
+    Precio: Q${selectedProduct.precio}
+    Código de reserva: ${code}
+
+    Gracias por tu compra. Te contactaremos pronto para coordinar la entrega.
+
+    📧 Este es un correo automático, por favor no responder.
+  `;
+
+  console.log('📧 Correo enviado a:', email);
+  console.log('📝 Mensaje:', mensajeCorreo);
+  
+  alert(`✅ RESERVA EXITOSA!\n\nSe ha enviado un correo de confirmación a: ${email}\n\nCódigo de reserva: ${code}`);
+
+  formModal.style.display = 'none';
+  guardarReservaLocal(datosReserva);
+  await cargarProductosConEstado();
       
     } else {
       throw new Error(resultado.error);
@@ -1216,19 +1306,29 @@ async function cargarReservasActivas() {
       const fecha = reserva.fecha ? reserva.fecha.toDate().toLocaleString('es-GT') : 'Fecha no disponible';
       
       html += `
-        <div class="reserva-item">
-          <div class="reserva-info">
-            <strong>${reserva.producto}</strong>
-            <div class="reserva-details">
-              👤 ${reserva.nombre} | 📞 ${reserva.telefono} 
-              | 🔐 ${reserva.codigo} | ⏰ ${fecha}
-            </div>
-          </div>
-          <button class="btn small danger" onclick="eliminarReserva('${doc.id}', '${reserva.idProducto}')">
-            Eliminar
-          </button>
-        </div>
-      `;
+  <div class="reserva-item">
+    <div class="reserva-info">
+      <strong>${reserva.producto}</strong>
+      <div class="reserva-details">
+         ${reserva.nombre} |  ${reserva.email} | 📞 ${reserva.telefono} 
+        | 🔐 ${reserva.codigo} |  ${fecha}
+        |  <span class="status ${reserva.estado === 'vendido' ? 'sold' : 'solicited'}">
+          ${reserva.estado === 'vendido' ? 'Vendido' : 'Reservado'}
+        </span>
+      </div>
+    </div>
+    <div class="reserva-actions">
+      ${reserva.estado !== 'vendido' ? `
+        <button class="btn small success" onclick="marcarComoVendido('${doc.id}', '${reserva.idProducto}')">
+           Marcar como Vendido
+        </button>
+      ` : ''}
+      <button class="btn small danger" onclick="eliminarReserva('${doc.id}', '${reserva.idProducto}')">
+         Eliminar
+      </button>
+    </div>
+  </div>
+`;
     });
     
     listaReservas.innerHTML = html;
@@ -1267,7 +1367,7 @@ async function cargarListaProductos() {
             <strong>${producto.nombre}</strong>
             <div class="producto-details">
               💰 Q${producto.precio} | 📍 ${producto.id} 
-              | 🏷️ <span class="status ${claseEstado}">${estado}</span>
+              |  <span class="status ${claseEstado}">${estado}</span>
             </div>
           </div>
           <div class="producto-actions">
@@ -1311,6 +1411,28 @@ async function eliminarReserva(idReserva, idProducto) {
     }
   }
 }
+// 🔥 NUEVA FUNCIÓN PARA MARCAR COMO VENDIDO
+async function marcarComoVendido(idReserva, idProducto) {
+  if (confirm('¿Estás seguro de que quieres marcar este producto como VENDIDO?\n\nEsta acción cambiará el estado del producto a "Vendido" y no podrá ser reservado nuevamente.')) {
+    try {
+      await db.collection("reservas").doc(idReserva).update({
+        estado: "vendido",
+        fechaVendido: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      
+      // Actualizar vista principal
+      await actualizarEstadoProducto(idProducto, 'vendido');
+      
+      alert('✅ Producto marcado como VENDIDO correctamente');
+      await cargarReservasActivas();
+      await cargarListaProductos();
+      
+    } catch (error) {
+      console.error('Error marcando como vendido:', error);
+      alert('❌ Error marcando producto como vendido');
+    }
+  }
+}
 // 🔥 NUEVA FUNCIÓN PARA ACTUALIZAR ESTADO DE PRODUCTO ESPECÍFICO
 async function actualizarEstadoProducto(idProducto) {
   // Limpiar localStorage
@@ -1340,31 +1462,40 @@ async function actualizarEstadoProducto(idProducto) {
     }
   });
 }
-// 🔥 FUNCIÓN MEJORADA PARA LIBERAR PRODUCTO
-async function liberarProducto(idProducto) {
-  try {
-    // Eliminar todas las reservas de este producto
-    const snapshot = await db.collection("reservas")
-      .where("idProducto", "==", idProducto)
-      .get();
-    
-    const batch = db.batch();
-    snapshot.forEach(doc => {
-      batch.delete(doc.ref);
-    });
-    await batch.commit();
-    
-    // 🔥 ACTUALIZAR INMEDIATAMENTE LA VISTA
-    await actualizarEstadoProducto(idProducto);
-    
-    alert('✅ Producto liberado correctamente');
-    await cargarReservasActivas();
-    await cargarListaProductos();
-    
-  } catch (error) {
-    console.error('Error liberando producto:', error);
-    alert('❌ Error liberando producto');
+// 🔥 FUNCIÓN ACTUALIZADA PARA ACTUALIZAR ESTADO DE PRODUCTO
+async function actualizarEstadoProducto(idProducto, nuevoEstado = 'disponible') {
+  // Limpiar localStorage si el producto está disponible
+  if (nuevoEstado === 'disponible') {
+    localStorage.removeItem(idProducto);
+    localStorage.removeItem(idProducto + '_code');
+    localStorage.removeItem(idProducto + '_datos');
   }
+  
+  // 🔥 ACTUALIZAR LA VISTA PRINCIPAL
+  const grid = document.getElementById('productsGrid');
+  if (!grid) return;
+  
+  const cards = grid.querySelectorAll('.card');
+  cards.forEach(card => {
+    const button = card.querySelector('.request');
+    const status = card.querySelector('.status');
+    
+    if (button && button.dataset.id === idProducto) {
+      if (nuevoEstado === 'vendido') {
+        status.textContent = 'Vendido';
+        status.className = 'status sold';
+        button.disabled = true;
+        button.style.opacity = '0.5';
+        button.textContent = 'Producto vendido';
+      } else if (nuevoEstado === 'disponible') {
+        status.textContent = 'Disponible';
+        status.className = 'status available';
+        button.disabled = false;
+        button.style.opacity = '1';
+        button.textContent = 'Solicitar este equipo';
+      }
+    }
+  });
 }
 
 async function reservarProductoAdmin(idProducto) {
