@@ -1,3 +1,7 @@
+// CONFIGURACIÓN EMAILJS - DATOS REALES
+const EMAILJS_PUBLIC_KEY = '1Vp21AOq3g1ThS0Md'; // Clable pública 
+const EMAILJS_SERVICE_ID = 'service_jb2h7qb'; // Cave del servicio
+const EMAILJS_TEMPLATE_ID = 'template_mxeyud8'; // Clave de la plantilla
 // Contraseña de administrador
 const ADMIN_PASSWORD = 'admin123';
 
@@ -664,6 +668,50 @@ let modoAdminActivo = false;
 let cargaEnProgreso = false;
 let ultimaCargaId = 0; // Para identificar y cancelar cargas antiguas
 
+// 🔥 FUNCIÓN PARA ENVIAR CORREO CON EMAILJS
+async function enviarCorreoConfirmacion(datosReserva, emailDestino) {
+  try {
+    // Inicializar EmailJS (solo una vez)
+    if (typeof emailjs !== 'undefined' && !emailjs.initiated) {
+      emailjs.init(EMAILJS_PUBLIC_KEY);
+      emailjs.initiated = true;
+    }
+
+    const templateParams = {
+      to_email: emailDestino,
+      nombre_cliente: datosReserva.nombre,
+      producto: datosReserva.producto,
+      telefono: datosReserva.telefono,
+      precio: datosReserva.precio,
+      codigo_reserva: datosReserva.codigo,
+      fecha: new Date().toLocaleDateString('es-GT', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      })
+    };
+
+    console.log('📧 Enviando correo con datos:', templateParams);
+
+    const resultado = await emailjs.send(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_TEMPLATE_ID,
+      templateParams
+    );
+    
+    console.log('✅ Correo enviado exitosamente:', resultado);
+    return { success: true, data: resultado };
+    
+  } catch (error) {
+    console.error('❌ Error enviando correo:', error);
+    return { 
+      success: false, 
+      error: error.text || error.message || 'Error desconocido al enviar correo' 
+    };
+  }
+}
 // Ejecutar esta función al inicio
 limpiarYReorganizarDatos();
 // Llama esta función al inicio
@@ -1164,12 +1212,12 @@ async function verificarDisponibilidad(idProducto) {
   }
 }
 
-// 🔥 FORMULARIO ACTUALIZADO CON FIREBASE - MODIFICADO PARA NO RECARGAR
+// 🔥 FORMULARIO ACTUALIZADO CON FIREBASE Y EMAILJS
 document.getElementById('reserveForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   const nombre = document.getElementById('nombre').value.trim();
   const telefono = document.getElementById('telefono').value.trim();
-  const email = document.getElementById('email').value.trim(); // ✅ NUEVO
+  const email = document.getElementById('email').value.trim();
 
   if (!nombre || !telefono || !email) {
     alert('Por favor completa todos los campos.');
@@ -1184,14 +1232,14 @@ document.getElementById('reserveForm').addEventListener('submit', async (e) => {
 
   const code = 'UVG-' + Math.floor(100000 + Math.random() * 900000);
   const datosReserva = {
-  producto: selectedProduct.nombre,
-  nombre: nombre,
-  telefono: telefono,
-  email: email, // ✅ NUEVO CAMPO
-  codigo: code,
-  precio: selectedProduct.precio,
-  idProducto: selectedProduct.id
-};
+    producto: selectedProduct.nombre,
+    nombre: nombre,
+    telefono: telefono,
+    email: email,
+    codigo: code,
+    precio: selectedProduct.precio,
+    idProducto: selectedProduct.id
+  };
 
   // Mostrar loading
   const boton = e.target.querySelector('button');
@@ -1204,7 +1252,7 @@ document.getElementById('reserveForm').addEventListener('submit', async (e) => {
     const disponible = await verificarDisponibilidad(selectedProduct.id);
     
     if (!disponible) {
-      alert(' Este equipo ya fue reservado por otra persona.');
+      alert('❌ Este equipo ya fue reservado por otra persona.');
       await cargarProductosConEstado();
       formModal.style.display = 'none';
       return;
@@ -1213,31 +1261,19 @@ document.getElementById('reserveForm').addEventListener('submit', async (e) => {
     // 🔥 RESERVAR EN FIREBASE
     const resultado = await reservarEnFirebase(datosReserva);
     
-  if (resultado.success) {
-  // ✅ ENVIAR CORREO ELECTRÓNICO EN LUGAR DE WHATSAPP
-  // Simulación de envío de correo
-  const mensajeCorreo = `
-    ✅ RESERVA EXITOSA - SUBASTAS UVG
+    if (resultado.success) {
+      // ✅ ENVIAR CORREO ELECTRÓNICO CON EMAILJS
+      const correoResultado = await enviarCorreoConfirmacion(datosReserva, email);
+      
+      if (correoResultado.success) {
+        alert(`✅ RESERVA EXITOSA!\n\n📧 Se ha enviado un correo de confirmación a: ${email}\n\n🔐 Código de reserva: ${code}\n\nGuarda este código para futuras referencias.`);
+      } else {
+        alert(`✅ RESERVA EXITOSA!\n\n🔐 Código de reserva: ${code}\n\n⚠️ No se pudo enviar el correo de confirmación, pero tu reserva está registrada.\n\nGuarda este código para futuras referencias.`);
+      }
 
-    Producto: ${selectedProduct.nombre}
-    Nombre: ${nombre}
-    Teléfono: ${telefono}
-    Precio: Q${selectedProduct.precio}
-    Código de reserva: ${code}
-
-    Gracias por tu compra. Te contactaremos pronto para coordinar la entrega.
-
-     Este es un correo automático, por favor no responder.
-  `;
-
-  console.log(' Correo enviado a:', email);
-  console.log(' Mensaje:', mensajeCorreo);
-  
-  alert(`✅ RESERVA EXITOSA!\n\nSe ha enviado un correo de confirmación a: ${email}\n\nCódigo de reserva: ${code}`);
-
-  formModal.style.display = 'none';
-  guardarReservaLocal(datosReserva);
-  await cargarProductosConEstado();
+      formModal.style.display = 'none';
+      guardarReservaLocal(datosReserva);
+      await cargarProductosConEstado();
       
     } else {
       throw new Error(resultado.error);
@@ -1246,7 +1282,7 @@ document.getElementById('reserveForm').addEventListener('submit', async (e) => {
   } catch (error) {
     console.error('Error:', error);
     guardarReservaLocal(datosReserva);
-    alert(` RESERVA EXITOSA (modo local)\nCódigo: ${code}\n\nNota: Los datos se guardaron localmente.`);
+    alert(`✅ RESERVA EXITOSA (modo local)\nCódigo: ${code}\n\nNota: Los datos se guardaron localmente.`);
     formModal.style.display = 'none';
     await cargarProductosConEstado();
   } finally {
