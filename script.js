@@ -130,217 +130,217 @@ const productos = [
   {
     id: 'C1',
     nombre: 'Combo 1',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    descripcion: 'Optiplex 3080 i5 10th generación, 8GB RAM',
     precio: 1500,
-    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
+    specs: ['Pantalla 21.5"', 'Windows 10', '480GB SSD', 'Puertos DP, VGA'],
     img: 'imagenes/C1.png',
     categoria: 'combos'
   },
   {
     id: 'C2',
     nombre: 'Combo 2',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB.',
+    descripcion: 'Optiplex 3080 i5 10th generación, 8GB RAM',
     precio: 1500,
-    specs: ['Full HD', 'HDMI', '4000 lúmenes'],
+    specs: ['Pantalla 21.5"', 'Windows 10', '480GB SSD', 'Puertos DP, VGA'],
     img: 'imagenes/C2.png',
     categoria: 'combos'
   },
   {
     id: 'C3',
     nombre: 'Combo 3',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB.',
+    descripcion: 'Optiplex 3080 i5 10th generación, 8GB RAM',
     precio: 1500,
-    specs: ['Full HD', 'HDMI', '4000 lúmenes'],
+    specs: ['Pantalla 18.5"', 'Windows 10', '480GB SSD', 'Puertos DP(1), VGA(1)'],
     img: 'imagenes/C3.png',
     categoria: 'combos'
   },
   {
     id: 'C4',
     nombre: 'Combo 4',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    descripcion: 'Optiplex 3080 i5 10th generación, 8GB RAM',
     precio: 1500,
-    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C4.png',
+    specs: ['Pantalla 18.5"', 'Windows 10', '480GB SSD', 'Puertos DP(1) VGA(1)'],
+    img: 'imagenes/C1.png',
     categoria: 'combos'
   },
   {
     id: 'C5',
     nombre: 'Combo 5',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    descripcion: 'Optiplex 3080 i5 10th generación, 8GB RAM',
     precio: 1500,
-    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
-    img: 'imagenes/C6.png',
+    specs: ['Pantalla 18.5"', 'Windows 10', '480GB SSD', 'Puertos DP(1) VGA(1)'],
+    img: 'imagenes/C5.png',
     categoria: 'combos'
   },
   {
     id: 'C6',
     nombre: 'Combo 6',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    descripcion: 'Optiplex 3080 i5 10th generación, 8GB RAM',
     precio: 1500,
-    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
+    specs: ['Pantalla 23"', 'Windows 10', '480GB SSD', 'Puertos DP(1), VGA(1)'],
     img: 'imagenes/C6.png',
     categoria: 'combos'
   },
   {
     id: 'C7',
     nombre: 'Combo 7',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    descripcion: 'Optiplex 3080 i5 10th generación, 8GB RAM',
     precio: 1500,
-    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
+    specs: ['Pantalla 23"', 'Windows 10', '480GB SSD', 'Puertos DP(1), VGA(1)'],
     img: 'imagenes/C7.png',
     categoria: 'combos'
   },
   {
     id: 'C8',
     nombre: 'Combo 8',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    descripcion: 'Optiplex 3080 i5 10th generación, 8GB RAM',
     precio: 1500,
-    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
+    specs: ['Pantalla 23"', 'Windows 10', '480GB SSD', 'Puertos DP(1), VGA(1)'],
     img: 'imagenes/C8.png',
     categoria: 'combos'
   },
   {
     id: 'C9',
     nombre: 'Combo 9',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    descripcion: 'Optiplex 3060 i5 8th generación, 8GB RAM',
     precio: 1500,
-    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
+    specs: ['Pantalla 18.5"', 'Windows 10', '480GB SSD', 'Puertos VGA(1)'],
     img: 'imagenes/C9.png',
     categoria: 'combos'
   },
-
   {
     id: 'C10',
     nombre: 'Combo 10',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    descripcion: 'Optiplex 7050 i7 7th generación, 8GB RAM',
     precio: 1500,
-    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
+    specs: ['Pantalla 21.5"', 'Windows 10', '480GB SSD', 'Puertos DP(1), VGA(1)'],
     img: 'imagenes/C10.png',
     categoria: 'combos'
   },
   {
     id: 'C11',
     nombre: 'Combo 11',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    descripcion: 'Optiplex 7050 i7 7th generación, 32GB RAM',
     precio: 1500,
-    specs: ['Pantalla 15.6"', 'Windows 10 Pro', 'SSD 512GB'],
+    specs: ['Pantalla 21.5"', 'Windows 10', '480GB SSD', 'Puertos DP(1), VGA(1)'],
     img: 'imagenes/C11.png',
     categoria: 'combos'
   },
   {
     id: 'C12',
     nombre: 'Combo 12',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    descripcion: 'Optiplex 3050 i5 7th generación, 8GB RAM',
     precio: 1500,
-    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    specs: ['Pantalla 21.5"', 'Windows 10', '480GB SSD', 'Puertos DP(1), VGA(1)'],
     img: 'imagenes/C12.png',
     categoria: 'combos'
   },
   {
     id: 'C13',
     nombre: 'Combo 13',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    descripcion: 'Optiplex 3050 i7 7th generación, 8GB RAM',
     precio: 1500,
-    specs: ['Pantalla 15"', 'Windows 10 Pro', 'SSD 512GB'],
+    specs: ['Pantalla 23"', 'Windows 10', '480GB SSD', 'Puertos DP(1), VGA(1)'],
     img: 'imagenes/C13.png',
     categoria: 'combos'
   },
   {
     id: 'C14',
     nombre: 'Combo 14',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    descripcion: 'Optiplex 3050 i7 7th generación, 8GB RAM',
     precio: 1500,
-    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    specs: ['Pantalla 23"', 'Windows 10', '480GB SSD', 'Puertos DP(1), VGA(1)'],
     img: 'imagenes/C14.png',
     categoria: 'combos'
   },
   {
     id: 'C15',
     nombre: 'Combo 15',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    descripcion: 'Optiplex 3050 i5 7th generación, 4GB RAM',
     precio: 1500,
-    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    specs: ['Pantalla 23"', 'Windows 10', '480GB SSD', 'Puertos DP(1), VGA(1)'],
     img: 'imagenes/C15.png',
     categoria: 'combos'
   },
   {
     id: 'C16',
     nombre: 'Combo 16',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    descripcion: 'Optiplex 3050 i5 7th generación, 4GB RAM',
     precio: 1500,
-    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    specs: ['Pantalla 23"', 'Windows 10', '480GB SSD', 'Puertos DP(1), VGA(1)'],
     img: 'imagenes/C16.png',
     categoria: 'combos'
   },
   {
     id: 'C17',
     nombre: 'Combo 17',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    descripcion: 'Optiplex 3080 i5 7th generación, 8GB RAM',
     precio: 1500,
-    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    specs: ['Pantalla 23"', 'Windows 10', '480GB SSD', 'Puertos DP(1), VGA(1)'],
     img: 'imagenes/C17.png',
     categoria: 'combos'
   },
   {
     id: 'C18',
     nombre: 'Combo 18',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    descripcion: 'Optiplex 3050 i5 7th generación, 4GB RAM',
     precio: 1500,
-    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    specs: ['Pantalla 23"', 'Windows 10', '480GB SSD', 'Puertos DP(1), VGA(1)'],
     img: 'imagenes/C18.png',
     categoria: 'combos'
   },
   {
     id: 'C19',
     nombre: 'Combo 19',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    descripcion: 'Optiplex 3050 i5 7th generación, 4GB RAM',
     precio: 1500,
-    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    specs: ['Pantalla 21.5"', 'Windows 10', '480GB SSD', 'Puertos DP(1), VGA(1)'],
     img: 'imagenes/C19.png',
     categoria: 'combos'
   },
   {
     id: 'C20',
     nombre: 'Combo 20',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    descripcion: 'Optiplex 3050 i5 inside, 4GB RAM',
     precio: 1500,
-    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    specs: ['Pantalla 18.5"', 'Windows 10', '480GB SSD', 'Puertos DP(1), VGA(1)'],
     img: 'imagenes/C20.png',
     categoria: 'combos'
   },
   {
     id: 'C21',
     nombre: 'Combo 21',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    descripcion: 'Optiplex 3050 i5 inside, 4GB RAM',
     precio: 1500,
-    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    specs: ['Pantalla 18.5"', 'Windows 10', '480GB SSD', 'Puertos DP(1), VGA(1)'],
     img: 'imagenes/C21.png',
     categoria: 'combos'
   },
   {
     id: 'C22',
     nombre: 'Combo 22',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    descripcion: 'Optiplex 3050 i5 7th generación, 4GB RAM',
     precio: 1500,
-    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    specs: ['Pantalla 18.5"', 'Windows 10', '480GB SSD', 'Puertos DP(1), VGA(1)'],
     img: 'imagenes/C22.png',
     categoria: 'combos'
   },
   {
     id: 'C23',
     nombre: 'Combo 23',
-    descripcion: 'Excelente estado, 16GB RAM, SSD 512GB',
+    descripcion: 'Optiplex 3020 i3, 8GB RAM',
     precio: 1500,
-    specs: ['Pantalla 15.2"', 'Windows 10 Pro', 'SSD 512GB'],
+    specs: ['Pantalla 19"', 'Windows 10', '480GB SSD', 'Puertos VGA(1)'],
     img: 'imagenes/C23.png',
     categoria: 'combos'
   },
+
 
   // LAPTOPS NUEVAS
   {
     id: 'L1',
     nombre: 'Laptop DELL Latitude 3490',
-    descripcion: 'Excelente estado, 12GB RAM, SSD 480GB',
+    descripcion: 'Buen estado, 12GB RAM, SSD 480GB',
     precio: 1200,
     specs: ['Windows 11', 'SSD 480GB', 'Intel i5 7th generación'],
     img: 'imagenes/Laptops/L01.png',
@@ -549,29 +549,110 @@ const productos = [
   // UPS NUEVOS
   {
     id: 'U1',
-    nombre: 'UPS APC Back-UPS',
-    descripcion: 'Nuevo, 1500VA, Regulación AVR',
+    nombre: 'UPS APC BX800L-LM',
+    descripcion: 'Buen estado',
     precio: 800,
-    specs: ['1500VA/900W', '8 Salidas', 'AVR', 'Batería reemplazable'],
-    img: 'imagenes/C28.JPEG',
+    specs: ['120V', '4 Salidas', '60Hz'],
+    img: 'imagenes/UPS/U1.png',
     categoria: 'ups'
   },
   {
     id: 'U2',
-    nombre: 'UPS CyberPower CP1500',
-    descripcion: 'Excelente estado, 1500VA, LCD',
-    precio: 750,
-    specs: ['1500VA/900W', '12 Salidas', 'Pantalla LCD', 'Protection'],
-    img: 'imagenes/C28.JPEG',
+    nombre: 'UPS APC BX800L-LM',
+    descripcion: 'Buen estado',
+    precio: 800,
+    specs: ['120V', '4 Salidas', '60Hz'],
+    img: 'imagenes/UPS/U2.png',
     categoria: 'ups'
   },
   {
     id: 'U3',
-    nombre: 'UPS Tripp Lite SMART',
-    descripcion: 'Como nuevo, 1000VA, Software',
-    precio: 600,
-    specs: ['1000VA/600W', '6 Salidas', 'Software', 'USB'],
-    img: 'imagenes/C28.JPEG',
+    nombre: 'UPS APC BX800L-LM',
+    descripcion: 'Buen estado',
+    precio: 800,
+    specs: ['120V', '4 Salidas', '60Hz'],
+    img: 'imagenes/UPS/U3.png',
+    categoria: 'ups'
+  },
+  {
+    id: 'U3',
+    nombre: 'UPS APC BX800L-LM',
+    descripcion: 'Buen estado',
+    precio: 800,
+    specs: ['120V', '4 Salidas', '60Hz'],
+    img: 'imagenes/UPS/U3.png',
+    categoria: 'ups'
+  },
+  {
+    id: 'U4',
+    nombre: 'UPS APC BX800L-LM',
+    descripcion: 'Buen estado',
+    precio: 800,
+    specs: ['120V', '4 Salidas', '60Hz'],
+    img: 'imagenes/UPS/U4.png',
+    categoria: 'ups'
+  },
+  {
+    id: 'U5',
+    nombre: 'UPS APC BX800L-LM',
+    descripcion: 'Buen estado',
+    precio: 800,
+    specs: ['120V', '4 Salidas', '60Hz'],
+    img: 'imagenes/UPS/U5.png',
+    categoria: 'ups'
+  },
+  {
+    id: 'U6',
+    nombre: 'UPS TRIPP.LITE',
+    descripcion: 'Buen estado',
+    precio: 800,
+    specs: ['120V', '12 Salidas', '60Hz'],
+    img: 'imagenes/UPS/U6.png',
+    categoria: 'ups'
+  },
+  {
+    id: 'U7',
+    nombre: 'UPS APC BX800L-LM',
+    descripcion: 'Buen estado',
+    precio: 800,
+    specs: ['120V', '4 Salidas', '60Hz'],
+    img: 'imagenes/UPS/U7.png',
+    categoria: 'ups'
+  },
+  {
+    id: 'U8',
+    nombre: 'UPS APC BX800L-LM',
+    descripcion: 'Buen estado',
+    precio: 800,
+    specs: ['120V', '4 Salidas', '60Hz'],
+    img: 'imagenes/UPS/U8.png',
+    categoria: 'ups'
+  },
+  {
+    id: 'U9',
+    nombre: 'UPS APC BX800L-LM',
+    descripcion: 'Buen estado',
+    precio: 800,
+    specs: ['120V', '4 Salidas', '60Hz'],
+    img: 'imagenes/UPS/U9.png',
+    categoria: 'ups'
+  },
+  {
+    id: 'U10',
+    nombre: 'UPS TRIPP.LITE',
+    descripcion: 'Buen estado',
+    precio: 800,
+    specs: ['120V', '12 Salidas', '60Hz'],
+    img: 'imagenes/UPS/U10.png',
+    categoria: 'ups'
+  },
+  {
+    id: 'U11',
+    nombre: 'UPS APC BX800L-LM',
+    descripcion: 'Buen estado',
+    precio: 800,
+    specs: ['120V', '4 Salidas', '60Hz'],
+    img: 'imagenes/UPS/U11.png',
     categoria: 'ups'
   }
 ];
@@ -590,12 +671,12 @@ verificarIntegridadDatos();
 // 🔥 FUNCIONES AUXILIARES PARA CATEGORÍAS (simplificadas)
 function obtenerIconoCategoria(categoria) {
   const icons = {
-    'combos': '🎮',
-    'laptops': '💻',
-    'ups': '🔋',
-    'all': '📦'
+    'combos': '',
+    'laptops': '',
+    'ups': '',
+    'all': ''
   };
-  return icons[categoria] || '📦';
+  return icons[categoria] || '';
 }
 
 function obtenerNombreCategoria(categoria) {
@@ -630,7 +711,7 @@ function contarProductosPorCategoria() {
 }
 // 🔥 FUNCIÓN MEJORADA PARA FILTRAR PRODUCTOS
 function filtrarProductos(categoria) {
-  console.log(`🎯 Filtrando por categoría: ${categoria}`);
+  console.log(` Filtrando por categoría: ${categoria}`);
   
   // CANCELAR CARGAS ANTERIORES INCREMENTANDO EL ID
   ultimaCargaId++;
@@ -647,7 +728,7 @@ function filtrarProductos(categoria) {
     productosFiltrados = productos.filter(producto => producto.categoria === categoria);
   }
   
-  console.log(`📦 Productos después de filtrar: ${productosFiltrados.length}`);
+  console.log(` Productos después de filtrar: ${productosFiltrados.length}`);
   
   // Actualizar contador
   if (document.getElementById('productCount')) {
@@ -673,13 +754,13 @@ async function cargarProductosConEstado() {
   
   // 🔒 BLOQUEAR NUEVAS CARGAS MIENTRAS UNA ESTÁ EN PROGRESO
   if (cargaEnProgreso) {
-    console.log('⏳ Carga en progreso, ignorando solicitud...');
+    console.log(' Carga en progreso, ignorando solicitud...');
     return;
   }
   
   // 🆔 IDENTIFICADOR ÚNICO PARA ESTA CARGA
   const cargaId = ++ultimaCargaId;
-  console.log(`🔄 Iniciando carga #${cargaId} para categoría: ${categoriaActual}`);
+  console.log(` Iniciando carga #${cargaId} para categoría: ${categoriaActual}`);
   
   cargaEnProgreso = true;
   
@@ -694,18 +775,18 @@ async function cargarProductosConEstado() {
     
     const productosAMostrar = categoriaActual === 'all' ? productos : productosFiltrados;
     
-    console.log(`📊 Productos a mostrar: ${productosAMostrar.length}`);
+    console.log(` Productos a mostrar: ${productosAMostrar.length}`);
     
     if (productosAMostrar.length === 0) {
       // VERIFICAR SI ESTA CARGA SIGUE SIENDO VÁLIDA
       if (cargaId !== ultimaCargaId) {
-        console.log('🚫 Carga cancelada - obsoleta');
+        console.log('Carga cancelada - obsoleta');
         return;
       }
       
       grid.innerHTML = `
         <div class="no-products">
-          <div class="no-products-icon">🔍</div>
+          <div class="no-products-icon"></div>
           <h3>No se encontraron productos</h3>
           <p>No hay equipos disponibles en esta categoría.</p>
         </div>
@@ -718,7 +799,7 @@ async function cargarProductosConEstado() {
     
     // VERIFICAR SI ESTA CARGA SIGUE SIENDO VÁLIDA
     if (cargaId !== ultimaCargaId) {
-      console.log('🚫 Carga cancelada - obsoleta');
+      console.log(' Carga cancelada - obsoleta');
       return;
     }
     
@@ -760,19 +841,19 @@ const productosHTML = productosAMostrar.map((p, index) => {
     // VERIFICAR UNA ÚLTIMA VEZ ANTES DE ACTUALIZAR EL DOM
     if (cargaId === ultimaCargaId) {
       grid.innerHTML = productosHTML;
-      console.log(`✅ Carga #${cargaId} completada - ${productosAMostrar.length} productos`);
+      console.log(` Carga #${cargaId} completada - ${productosAMostrar.length} productos`);
     } else {
-      console.log('🚫 Carga cancelada - última verificación');
+      console.log(' Carga cancelada - última verificación');
     }
     
   } catch (error) {
-    console.error(`❌ Error en carga #${cargaId}:`, error);
+    console.error(` Error en carga #${cargaId}:`, error);
     
     // SOLO MOSTRAR ERROR SI ESTA ES LA CARGA ACTUAL
     if (cargaId === ultimaCargaId) {
       grid.innerHTML = `
         <div class="error-products">
-          <div class="error-icon">⚠️</div>
+          <div class="error-icon"></div>
           <h3>Error al cargar productos</h3>
           <p>Intenta recargar la página.</p>
         </div>
@@ -875,16 +956,16 @@ function aplicarCategoriaGuardada() {
 
 // 🔥 FUNCIÓN PARA VERIFICAR INTEGRIDAD DE DATOS
 function verificarIntegridadDatos() {
-  console.log("🔍 Verificando integridad de datos...");
+  console.log(" Verificando integridad de datos...");
   
   // Verificar IDs duplicados
   const ids = productos.map(p => p.id);
   const duplicados = ids.filter((id, index) => ids.indexOf(id) !== index);
   
   if (duplicados.length > 0) {
-    console.warn("❌ IDs DUPLICADOS:", duplicados);
+    console.warn(" IDs DUPLICADOS:", duplicados);
   } else {
-    console.log("✅ Todos los IDs son únicos");
+    console.log(" Todos los IDs son únicos");
   }
   
   // Verificar categorías
@@ -893,12 +974,12 @@ function verificarIntegridadDatos() {
     if (!categorias[p.categoria]) categorias[p.categoria] = 0;
     categorias[p.categoria]++;
   });
-  console.log("📊 Productos por categoría:", categorias);
+  console.log(" Productos por categoría:", categorias);
   
   // Verificar productos problemáticos
   productos.forEach(p => {
     if (!p.categoria || !p.id) {
-      console.warn("⚠️ Producto con datos incompletos:", p);
+      console.warn(" Producto con datos incompletos:", p);
     }
   });
 }
@@ -915,7 +996,7 @@ function limpiarYReorganizarDatos() {
       idsVistos.add(producto.id);
       productosUnicos.push(producto);
     } else {
-      console.warn(`🚨 Eliminando duplicado: ${producto.id}`);
+      console.warn(` Eliminando duplicado: ${producto.id}`);
     }
   });
   
@@ -923,7 +1004,7 @@ function limpiarYReorganizarDatos() {
   productos.length = 0;
   productos.push(...productosUnicos);
   
-  console.log(`✅ Datos limpiados. Productos únicos: ${productos.length}`);
+  console.log(` Datos limpiados. Productos únicos: ${productos.length}`);
 }
 
 
@@ -1123,7 +1204,7 @@ document.getElementById('reserveForm').addEventListener('submit', async (e) => {
     const disponible = await verificarDisponibilidad(selectedProduct.id);
     
     if (!disponible) {
-      alert('❌ Este equipo ya fue reservado por otra persona.');
+      alert(' Este equipo ya fue reservado por otra persona.');
       await cargarProductosConEstado();
       formModal.style.display = 'none';
       return;
@@ -1146,11 +1227,11 @@ document.getElementById('reserveForm').addEventListener('submit', async (e) => {
 
     Gracias por tu compra. Te contactaremos pronto para coordinar la entrega.
 
-    📧 Este es un correo automático, por favor no responder.
+     Este es un correo automático, por favor no responder.
   `;
 
-  console.log('📧 Correo enviado a:', email);
-  console.log('📝 Mensaje:', mensajeCorreo);
+  console.log(' Correo enviado a:', email);
+  console.log(' Mensaje:', mensajeCorreo);
   
   alert(`✅ RESERVA EXITOSA!\n\nSe ha enviado un correo de confirmación a: ${email}\n\nCódigo de reserva: ${code}`);
 
@@ -1165,7 +1246,7 @@ document.getElementById('reserveForm').addEventListener('submit', async (e) => {
   } catch (error) {
     console.error('Error:', error);
     guardarReservaLocal(datosReserva);
-    alert(`✅ RESERVA EXITOSA (modo local)\nCódigo: ${code}\n\nNota: Los datos se guardaron localmente.`);
+    alert(` RESERVA EXITOSA (modo local)\nCódigo: ${code}\n\nNota: Los datos se guardaron localmente.`);
     formModal.style.display = 'none';
     await cargarProductosConEstado();
   } finally {
@@ -1217,14 +1298,14 @@ async function mostrarPanelAdministrador() {
     <div class="panel-admin-overlay">
       <div class="panel-admin-content">
         <div class="panel-header">
-          <h2>📊 Panel de Administración - Subastas UVG</h2>
+          <h2> Panel de Administración - Subastas UVG</h2>
           <button class="close-panel" onclick="cerrarPanelAdmin()">✕</button>
         </div>
         
         <div class="panel-tabs">
-          <button class="tab-btn active" data-tab="reservas">📋 Reservas Activas</button>
-          <button class="tab-btn" data-tab="productos">🔄 Gestionar Productos</button>
-          <button class="tab-btn" data-tab="limpiar">🗑️ Limpiar Sistema</button>
+          <button class="tab-btn active" data-tab="reservas"> Reservas Activas</button>
+          <button class="tab-btn" data-tab="productos"> Gestionar Productos</button>
+          <button class="tab-btn" data-tab="limpiar"> Limpiar Sistema</button>
         </div>
         
         <div class="tab-content">
@@ -1246,9 +1327,9 @@ async function mostrarPanelAdministrador() {
             <h3>Limpiar Sistema</h3>
             <div class="clean-actions">
               <button class="btn danger" id="limpiarTodo">
-                🗑️ Limpiar TODAS las reservas (Firebase)
+                 Limpiar TODAS las reservas (Firebase)
               </button>
-              <p class="warning">⚠️ Esta acción no se puede deshacer. Eliminará todas las reservas de la base de datos.</p>
+              <p class="warning"> Esta acción no se puede deshacer. Eliminará todas las reservas de la base de datos.</p>
             </div>
           </div>
         </div>
@@ -1310,8 +1391,8 @@ async function cargarReservasActivas() {
     <div class="reserva-info">
       <strong>${reserva.producto}</strong>
       <div class="reserva-details">
-         ${reserva.nombre} |  ${reserva.email} | 📞 ${reserva.telefono} 
-        | 🔐 ${reserva.codigo} |  ${fecha}
+         ${reserva.nombre} |  ${reserva.email} |  ${reserva.telefono} 
+        |  ${reserva.codigo} |  ${fecha}
         |  <span class="status ${reserva.estado === 'vendido' ? 'sold' : 'solicited'}">
           ${reserva.estado === 'vendido' ? 'Vendido' : 'Reservado'}
         </span>
@@ -1366,7 +1447,7 @@ async function cargarListaProductos() {
           <div class="producto-info">
             <strong>${producto.nombre}</strong>
             <div class="producto-details">
-              💰 Q${producto.precio} | 📍 ${producto.id} 
+               Q${producto.precio} |  ${producto.id} 
               |  <span class="status ${claseEstado}">${estado}</span>
             </div>
           </div>
@@ -1401,13 +1482,13 @@ async function eliminarReserva(idReserva, idProducto) {
       // 🔥 ACTUALIZAR INMEDIATAMENTE LA VISTA PRINCIPAL
       await actualizarEstadoProducto(idProducto);
       
-      alert('✅ Reserva eliminada correctamente');
+      alert(' Reserva eliminada correctamente');
       await cargarReservasActivas();
       await cargarListaProductos();
       
     } catch (error) {
       console.error('Error eliminando reserva:', error);
-      alert('❌ Error eliminando reserva');
+      alert(' Error eliminando reserva');
     }
   }
 }
@@ -1423,13 +1504,13 @@ async function marcarComoVendido(idReserva, idProducto) {
       // Actualizar vista principal
       await actualizarEstadoProducto(idProducto, 'vendido');
       
-      alert('✅ Producto marcado como VENDIDO correctamente');
+      alert(' Producto marcado como VENDIDO correctamente');
       await cargarReservasActivas();
       await cargarListaProductos();
       
     } catch (error) {
       console.error('Error marcando como vendido:', error);
-      alert('❌ Error marcando producto como vendido');
+      alert(' Error marcando producto como vendido');
     }
   }
 }
@@ -1513,19 +1594,19 @@ async function reservarProductoAdmin(idProducto) {
         estado: "reservado"
       });
       
-      alert('✅ Producto marcado como reservado');
+      alert(' Producto marcado como reservado');
       await cargarListaProductos();
       cargarProductosConEstado(); // Actualizar vista principal
     } catch (error) {
       console.error('Error reservando producto:', error);
-      alert('❌ Error reservando producto');
+      alert(' Error reservando producto');
     }
   }
 }
 
 // 🔥 LIMPIAR TODAS LAS RESERVAS
 async function limpiarTodasLasReservas() {
-  if (confirm('⚠️ ¿ESTÁS SEGURO?\n\nEsta acción eliminará TODAS las reservas de la base de datos y no se puede deshacer.')) {
+  if (confirm(' ¿ESTÁS SEGURO?\n\nEsta acción eliminará TODAS las reservas de la base de datos y no se puede deshacer.')) {
     try {
       const snapshot = await db.collection("reservas").get();
       const batch = db.batch();
@@ -1541,13 +1622,13 @@ async function limpiarTodasLasReservas() {
         localStorage.removeItem(p.id + '_datos');
       });
       
-      alert('✅ Todas las reservas han sido eliminadas');
+      alert(' Todas las reservas han sido eliminadas');
       await cargarReservasActivas();
       await cargarListaProductos();
       cargarProductosConEstado(); // Actualizar vista principal
     } catch (error) {
       console.error('Error limpiando reservas:', error);
-      alert('❌ Error limpiando reservas');
+      alert(' Error limpiando reservas');
     }
   }
 }
@@ -1582,7 +1663,7 @@ function injectarEstilosAdicionales() {
 }
 // 🔥 INICIALIZACIÓN MEJORADA
 document.addEventListener('DOMContentLoaded', function() {
-  console.log("🚀 Inicializando aplicación...");
+  console.log(" Inicializando aplicación...");
   
   // Inyectar estilos adicionales
   injectarEstilosAdicionales();
@@ -1600,5 +1681,5 @@ document.addEventListener('DOMContentLoaded', function() {
     adminBtn.addEventListener('click', toggleModoAdministrador);
   }
   
-  console.log("✅ Aplicación inicializada correctamente");
+  console.log(" Aplicación inicializada correctamente");
 });
